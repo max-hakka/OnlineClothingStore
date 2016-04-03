@@ -39,21 +39,25 @@ onlineClothingStoreApp.config(['$routeProvider',
       when('/login', {
         templateUrl: 'partials/login.html'
       }).
-      // TODO in Lab 5: add more conditions for the last two screens (overview and preparation)
       when('/profile', {
-        templateUrl: 'partials/profile.html'
+        templateUrl: 'partials/profile.html',
+        controller: 'ProfileCtrl'
       }).
       when('/cart', {
-        templateUrl: 'partials/cart.html'
+        templateUrl: 'partials/cart.html',
+        controller: 'CartCtrl'
       }).
       when('/receipt', {
-        templateUrl: 'partials/receipt.html'
+        templateUrl: 'partials/receipt.html',
+        controller: 'ReceiptCtrl'
       }).
       when('/edit-account', {
-        templateUrl: 'partials/edit-account.html'
+        templateUrl: 'partials/edit-account.html',
+        controller: 'EditAccountCtrl'
       }).
       when('/register', {
-        templateUrl: 'partials/register.html'
+        templateUrl: 'partials/register.html',
+        controller: 'RegisterCtrl'
       }).
       otherwise({
         redirectTo: '/login'

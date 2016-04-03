@@ -12,7 +12,7 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- Bootstrap CSS -->
     <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
     <!-- jQuery -->
-    <!-- <script src="bower_components/jquery/dist/jquery.js"></script> -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <!-- <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
     <!-- Angular JavaScript including routing and resource modules  -->
@@ -24,6 +24,14 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- The application JavaScript code -->
     <script src="js/app.js"></script>
     <script src="js/service.js"></script>
+    <script src="js/registerCtrl.js"></script>
+    <script src="js/profileCtrl.js"></script>
+    <script src="js/cartCtrl.js"></script>
+    <script src="js/receiptCtrl.js"></script>
+    <script src="js/editAccountCtrl.js"></script>
+
+    <!-- Install the Firebase JavaScript library -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
   </head>
   <body>
@@ -33,6 +41,5 @@ which module to associate the app with. In app.js we create the "dinnerPlanner" 
     <!-- ng-view Angular directive is where the partials will be loaded. app.js configures the $routingProvider
     where you specify which partial should be loaded when. -->
     <div ng-view></div>
-
   </body>
 </html>

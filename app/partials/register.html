@@ -1,73 +1,75 @@
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="../index.css"/>
-	</head>
-	<body>
-		<div id="register" class="center table">
-			<h1>New Account</h1>
-			<form>
-				<table>
-					<tr>
-						<td colspan="2" width="300px"><h3 style="margin-top: 15px; margin-bottom: 0;">Personal details</h3></td>
-					</tr>
-					<tr>
-						<td>First name:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>Last name:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>Mobile:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>Email:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2"><h3 style="margin-top: 15px; margin-bottom: 0;">Shipping Address</h3></td>
-					</tr>
-					<tr>
-						<td>C/o:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>Street name:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>Postal code:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td>City:</td>
-						<td>
-							<input type="text"/>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<button style="float:right;">Register</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
-	</body>
-</html>
+<div id="register" class="center table">
+	<h1>New Account</h1>
+	<form>
+		<table>
+			<tr>
+				<td colspan="2" width="300px"><h3 style="margin-top: 15px; margin-bottom: 0;">Personal details</h3></td>
+			</tr>
+			<tr>
+				<td>First name:</td>
+				<td>
+					<input type="text" ng-model="fname"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Last name:</td>
+				<td>
+					<input type="text" ng-model="lname"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Mobile:</td>
+				<td>
+					<input type="tel" ng-model="mobile"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td>
+					<input type="email" ng-model="email"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td>
+					<input type="password" ng-model="password"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Confirm Password:</td>
+				<td>
+					<input type="password" ng-model="password2"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><h3 style="margin-top: 15px; margin-bottom: 0;">Shipping Address</h3></td>
+			</tr>
+			<tr>
+				<td>C/o:</td>
+				<td>
+					<input type="text" ng-model="co"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Street name:</td>
+				<td>
+					<input type="text" ng-model="street"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Postal code:</td>
+				<td>
+					<input type="text" ng-model="postalCode"/>
+				</td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td>
+					<input type="text" ng-model="city"/>
+				</td>
+			</tr>
+		</table>
+		<a href="#/profile" class="button fr" ng-click="createProfile()">Register</a>
+		<span ng-bind="fname"></span>
+	</form>
+</div>
