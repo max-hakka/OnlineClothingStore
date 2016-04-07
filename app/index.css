@@ -1,3 +1,29 @@
+#header>h1{
+	color: #FFFFFF; 
+	font-family: 'Raleway',
+	sans-serif; 
+	font-size: 40px; 
+	font-weight: 800; 
+	line-height: 72px; 
+	margin: 0 0 0 3%; 
+	text-transform: uppercase;
+	display: inline-block;
+}
+a{
+	text-decoration: none;
+	color:#428bca;
+}
+a:hover{
+	text-decoration: underline;
+}
+h1>a{
+	text-decoration: none;
+	color:#FFFFFF;
+}
+h1>a:hover{
+	text-decoration: none;
+}
+
 .centerContent {
 	text-align:center;
 }
@@ -30,4 +56,139 @@ table td {
     border-radius: 4px;
     padding: 5px 10px;
     text-decoration: none;
+}
+#header{
+	background-color: #2CA4B0;
+	left:0;
+	right:0;
+	top:0;
+	position: fixed;
+}
+#shopping_cart{
+	height: 23px;
+	width: 23px;
+}
+#search_input{
+	margin-left: 15%;
+	margin-top: 23px;
+	display: inline-block;
+	vertical-align: top;
+}
+#search_input>input{
+	width: 200px;
+	height: 20px;
+	top:0;
+}
+#search_input>button{
+	width: 60px;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+button>img{
+	height: 20px;
+	width: 20px;
+}
+#header>a{
+	display: inline-block;
+	float: right;
+	margin-right: 50px;
+	margin-top: 25px;
+	color: #FFFFFF; 
+	font-family: 'Raleway',
+	sans-serif;
+	font-weight: 800;
+	text-decoration: none;
+    text-transform: uppercase;
+}
+
+.categories{
+	margin: 4% 0 0 0;
+	width: 250px;
+	float: left;
+}
+ul.category_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li>a:link, li>a:visited {
+    display: block;
+    font-size: 20px; 
+    font-family: 'Raleway',
+	sans-serif; 
+	font-weight: 800;
+    color: #FFFFFF;
+    background-color: grey;
+    width: 200px;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:1px solid white;
+}
+li>a:hover, li>a:active {
+    background-color: black;
+}
+.featured{
+	border:1px solid black;
+	display: inline-block;
+	float: left;
+	width: 86%;
+	margin-left: 0;
+	margin-top: 4%;
+}
+h2{
+	font-size: 20px; 
+    font-family: 'Raleway',
+	sans-serif; 
+	font-weight: 800;
+    margin-left: 15px;
+    text-transform: uppercase;
+}
+.featured>div{
+	display: inline-block;
+	float: left;
+	width: 200px;
+	overflow: hidden;
+}
+h3{
+	font-family: 'Raleway',
+	sans-serif;
+	font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0;
+}
+img.clothing{
+	width:120px; 
+	height:150px;
+	display: block;
+	margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto
+}
+.price{
+	font-family: 'Raleway',
+	sans-serif;
+	font-weight: 600;
+	color: red;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+}
+.add_to_cart{
+	display: block;
+    font-size: 15px; 
+    font-family: 'Raleway',
+	sans-serif; 
+	font-weight: 800;
+    color: #FFFFFF;
+    background-color: grey;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+
 }

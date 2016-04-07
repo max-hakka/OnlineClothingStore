@@ -36,6 +36,10 @@ var onlineClothingStoreApp = angular.module('onlineClothingStore', ['ngRoute','n
 onlineClothingStoreApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+      when('/home', {
+        templateUrl: 'partials/home.html',
+        controller: 'HomeCtrl'
+      }).
       when('/login', {
         templateUrl: 'partials/login.html'
       }).
@@ -60,6 +64,6 @@ onlineClothingStoreApp.config(['$routeProvider',
         controller: 'RegisterCtrl'
       }).
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '/home'
       });
   }]);
