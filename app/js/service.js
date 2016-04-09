@@ -15,6 +15,9 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		});
 		return result;
 	}
+	if("undefined" === typeof($cookieStore.get("items"))){
+		$cookieStore.put("items", []);
+	}
 
 	// Save orders
 	this.saveOrders = function(data) {
@@ -52,14 +55,23 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		user.update(data);
 	}
 	this.addToCart =function(item){
-		$cookieStore.put("items", item)
+		items=$cookieStore.get("items");
+		items.push[item];
+		$cookieStore.put("items", items);
 	}
 
 	this.deleteFromCart =function(item){
-		$cookieStore.remove("items", item)
+		items=$cookieStore.get("items");
+		for (key in items){
+			if (item.Id = items[key].Id){
+				items.splice(key,1);
+			};
+		};			
+		$cookieStore.put("items", items);
+
 	}
 	this.getCart=function(){
-		$cookieStore.get("items")
+		$cookieStore.get("items");
 	}
 	this.getCategory=function(){
 		return {items:[{'Image':'https://image.spreadshirtmedia.net/image-server/v1/products/118898654/views/1,width=378,height=378,appearanceId=39,version=1447077209/Ansikte-smiley-30-roliga-serier-T-shirts.png', 'Title':'Orange T-Shirt', 'Price':'100 SEK', 'Id':'1'},{'Image':'http://pngimg.com/upload/tshirt_PNG5434.png', 'Title':'White T-Shirt', 'Price':'50 SEK', 'Id':'2'},{'Image':'https://cdn.qwertee.com/images/mens-black.png', 'Title':'Black T-Shirt', 'Price':'75 SEK', 'Id':'3'}]};
