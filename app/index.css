@@ -67,9 +67,13 @@ table td {
 	right:0;
 	top:0;
 }
-#shopping_cart{
-	height: 23px;
-	width: 23px;
+.shopping_cart{
+	display:inline-block;
+	background-image: url("images/shopping-cart2.png");
+	background-repeat: no-repeat;
+	background-position: 0px 5px;
+	height: 35px;
+	width: 30px;
 }
 #search_input{
 	margin-left: 15%;

@@ -15,11 +15,11 @@
 			<h3>{{item.Name}}</h3>
 			<span class="price">{{item.Price}} SEK</span>
 			<br>
-			<button id="item.Id" class="add_to_cart">Add To Cart</button>
+			<button id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
 			<br>
 			<br>
 			<strong>Amount:</strong>
-			<input type="number" value="1" min="1"></input>
+			<input type="number" value="{{amount}}" min="1"></input>
 			<br>
 			<strong>Color:</strong>
 			<br>

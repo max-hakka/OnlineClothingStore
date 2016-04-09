@@ -1,5 +1,6 @@
 onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
-	
+	$scope.itemsAmount=Service.getCart().length;
+
 	function updateStatus(){
 		if(Service.authData){
 			var data = Service.getProfile();
