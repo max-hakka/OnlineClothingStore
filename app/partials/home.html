@@ -1,21 +1,20 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <div class="categories">
 	<ul class="category_list">
-		  <li><a href="#/sale">Sale</a></li>
-		  <li><a href="#/mens">Mens</a></li>
-		  <li><a href="#/womens">Womens</a></li>
-		  <li><a href="#/kids">Kids</a></li>
-		  <li><a href="#/accessories">Accessories</a></li>
+		  <li><a href="#/home?category=sale">Sale</a></li>
+		  <li><a href="#/home?category=mens">Mens</a></li>
+		  <li><a href="#/home?category=womens">Womens</a></li>
+		  <li><a href="#/home?category=kids">Kids</a></li>
+		  <li><a href="#/home?category=accessories">Accessories</a></li>
 	</ul>
 </div>
 <div class="content">
-	<div class="featured">
-		<h2>Featured</h2>
-		<div ng-repeat="item in category.items">
-			<img class="clothing" ng-src="{{item.Image}}"/>
-			<h3>{{item.Title}}</h3>
-			<span class="price">{{item.Price}}</span>
-			<button id="item.Id" class="add_to_cart">Add To Cart</button>
+	<h2>Featured</h2>
+	<div ng-repeat="items in category">
+		<div class="clothing_item" ng-repeat="item in items">
+			<a href="#/item"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
+			<h3><a href="#/item?id={{item.Id}}">{{item.Name}}<a></h3>
+			<h4><a href="#/item?id={{item.Id}}">{{item.Price}} SEK</a></h4>
 		</div>
 	</div>
 </div>
