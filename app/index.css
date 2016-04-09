@@ -66,6 +66,7 @@ table td {
 	left:0;
 	right:0;
 	top:0;
+	position:fixed;
 }
 .shopping_cart{
 	display:inline-block;
@@ -110,7 +111,7 @@ button>img{
 }
 
 .categories{
-	margin: 0 0 0 0;
+	margin: 100px 0 0 0;
 	width: 250px;
 	float: left;
 }
@@ -142,7 +143,7 @@ div.content {
 	display: inline-block;
 	float: left;
 	margin-left: 0;
-	margin-top: 0;
+	margin-top: 100px;
 }
 h2{
 	font-size: 18px; 
