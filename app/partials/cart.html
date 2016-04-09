@@ -1,5 +1,5 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
-<div id="cart" class="center table">
+<div id="cart" class="mainContainer center table">
 	<h3>Shopping cart</h3>
 	<form>
 		<table>
@@ -10,7 +10,7 @@
 					<span class="fl">Amount</span>
 				</th>
 			</tr>
-			<tr ng-repeat="item in cart.items">
+			<tr ng-repeat="item in cart.items track by $index">
 				<td>{{item.name}}</td>
 				<td>SEK {{item.price}}</td>
 				<td>

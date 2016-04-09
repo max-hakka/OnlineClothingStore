@@ -1,9 +1,15 @@
 onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) {
-
+	
 	// Create a reference to the Firebase database
-	var myDataRef = new Firebase('https://clothing-store.firebaseio.com/');
-	var usersRef = myDataRef.child("users");
-	var userID = "Ah Zau Marang";
+	var dataRef = new Firebase('https://clothing-store.firebaseio.com/');
+	var usersRef = dataRef.child("users");
+	this.authData = dataRef.getAuth();
+	if (this.authData) {
+		var userID = this.authData.uid;
+		console.log("User " + userID + " is logged in with " + this.authData.provider);
+	}else {
+	  	console.log("User is logged out");
+	}
 
 	// Retrieve data from given address from firebase database
 	function retrieveData(address) {
@@ -35,10 +41,47 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// 	return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 	// }
 
+	// Log in user
+	this.logIn = function(authentication, callback){
+		console.log(authentication);
+		dataRef.authWithPassword({
+		    email: authentication.email,
+		    password: authentication.password
+		}, function(error, authData) {
+		    if (error) {
+		        console.log("Login Failed!", error);
+		    } else {
+		        console.log("Authenticated successfully with payload:", authData);
+		        callback(authData);
+		    }
+		}, {
+			remember: "sessionOnly"
+		});
+	}
+
+	// Log out user
+	this.logOut = function() {
+		dataRef.unauth();
+	}
+
 	// Store user object under "users" into Firebase database
-	this.createProfile = function(data) {
-		var user = usersRef.child(data.personalDetails.fname + ' ' + data.personalDetails.lname);
-		user.set(data);
+	this.createProfile = function(authentication, data) {
+		console.log(authentication.email);
+		var self = this;
+		dataRef.createUser({
+			email: authentication.email,
+			password: authentication.password
+		}, function(error, userData){
+			if (error){
+				console.log("Error creating user:", error);
+			}else {
+			    console.log("Successfully created user account with uid:", userData.uid);
+			    self.logIn(authentication, function(authData){
+			  		usersRef.child(authData.uid).set(data);
+			    });
+			  
+			}
+		});
 	}
 
 	// Retrieve profile's data for a given id

@@ -41,7 +41,8 @@ onlineClothingStoreApp.config(['$routeProvider',
         controller: 'HomeCtrl'
       }).
       when('/login', {
-        templateUrl: 'partials/login.html'
+        templateUrl: 'partials/login.html',
+        controller: 'LogInCtrl'
       }).
       when('/profile', {
         templateUrl: 'partials/profile.html',

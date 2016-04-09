@@ -1,5 +1,5 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
-<div id="login" class="center table">
+<div id="login" class="mainContainer center table">
 	<h1>Sign In</h1>
 	<form>
 		<table>
@@ -8,7 +8,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="text"/>
+					<input type="email" ng-model="email"/>
 				</td>
 			</tr>
 			<tr>
@@ -19,12 +19,14 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="text"></td>
+					<input type="password" ng-model="password"></td>
 				</td>
 			</tr>
 		</table>
 		</br>
-		<a href="#/profile" class="button">Sign In</a>
+		<a href="#/profile" class="button" ng-click="logIn()">Sign In</a>
 		<a href="#/register" class="button fr">Create a new account</a>
 	</form>
+	</br>
+	{{status}}
 </div>
