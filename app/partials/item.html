@@ -1,0 +1,38 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="categories">
+	<ul class="category_list">
+		  <li><a href="#/sale">Sale</a></li>
+		  <li><a href="#/mens">Mens</a></li>
+		  <li><a href="#/womens">Womens</a></li>
+		  <li><a href="#/kids">Kids</a></li>
+		  <li><a href="#/accessories">Accessories</a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="clothing_item">
+		<img class="clothing" ng-src="{{item.imageUrl}}"/>
+		<div class="info">
+			<h3>{{item.Name}}</h3>
+			<span class="price">{{item.Price}} SEK</span>
+			<br>
+			<button id="item.Id" class="add_to_cart">Add To Cart</button>
+			<br>
+			<br>
+			<strong>Amount:</strong>
+			<input type="number" value="1" min="1"></input>
+			<br>
+			<strong>Color:</strong>
+			<br>
+			<strong>Size:</strong>
+			<br>
+			<strong>Category:</strong>
+			{{item.Category}}
+			<br>
+			<strong>Description:</strong>
+			{{item.Description}}
+			<br>
+			<strong>Region of Manufacture:</strong>
+			{{item.Country}}
+		</div>
+	</div>
+</div>
