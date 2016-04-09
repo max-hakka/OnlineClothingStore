@@ -77,10 +77,10 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		return {items:[{'Image':'https://image.spreadshirtmedia.net/image-server/v1/products/118898654/views/1,width=378,height=378,appearanceId=39,version=1447077209/Ansikte-smiley-30-roliga-serier-T-shirts.png', 'Title':'Orange T-Shirt', 'Price':'100 SEK', 'Id':'1'},{'Image':'http://pngimg.com/upload/tshirt_PNG5434.png', 'Title':'White T-Shirt', 'Price':'50 SEK', 'Id':'2'},{'Image':'https://cdn.qwertee.com/images/mens-black.png', 'Title':'Black T-Shirt', 'Price':'75 SEK', 'Id':'3'}]};
 	};
 	// Get data for items of a given category
-	//this.getCategory = $resource('http://../items', {pg:1,rpp:25,api_key:''}, {get:{method:'GET', cache:true}});
+	this.getItems = $resource('http://xml.csc.kth.se/~marang/REST_API/items/index.php');
 
 	// Get data for an item with a specific id
-	this.getItem = $resource('http://../:id', {api_key:''}, {get:{method:"GET",cache:true}});
+	this.getItem = $resource('http://xml.csc.kth.se/~marang/REST_API/item/index.php');
 
 	return this;
 });
