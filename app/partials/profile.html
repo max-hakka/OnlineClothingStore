@@ -37,7 +37,7 @@
 					<span class="fl">Amount</span>
 				</th>
 			</tr>
-			<tr ng-repeat="item in order.items">
+			<tr ng-repeat="item in order.items track by $index">
 				<td>{{item.name}}</td>
 				<td>SEK {{item.price}}</td>
 				<td>{{item.amount}}x</td>

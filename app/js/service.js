@@ -3,10 +3,12 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// Create a reference to the Firebase database
 	var dataRef = new Firebase('https://clothing-store.firebaseio.com/');
 	var usersRef = dataRef.child("users");
+	this.userID = '';
+	this.userName = '';
 	this.authData = dataRef.getAuth();
 	if (this.authData) {
-		var userID = this.authData.uid;
-		console.log("User " + userID + " is logged in with " + this.authData.provider);
+		this.userID = this.authData.uid;
+		console.log("User " + this.userID + " is logged in with " + this.authData.provider);
 	}else {
 	  	console.log("User is logged out");
 	}
@@ -27,13 +29,13 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Save orders
 	this.saveOrders = function(data) {
-		var orderRef = usersRef.child(userID+"/orders/"+data.orderNr);
+		var orderRef = usersRef.child(this.userID+"/orders/"+data.orderNr);
 		orderRef.set(data);
 	}
 
 	// Retrieve data for given order number
 	this.getOrder = function(id) {
-		return retrieveData(userID+"/orders/"+id);
+		return retrieveData(this.userID+"/orders/"+id);
 	}
 
 	// // Generate a GUID for a new user
@@ -53,9 +55,11 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		}, function(error, authData) {
 		    if (error) {
 		        console.log("Login Failed!", error);
+		        callback("deny");
 		    } else {
 		        console.log("Authenticated successfully with payload:", authData);
-		        callback(authData);
+		        this.userID = authData.uid;
+		        callback("success");
 		    }
 		}, {
 			remember: "sessionOnly"
@@ -65,6 +69,8 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// Log out user
 	this.logOut = function() {
 		dataRef.unauth();
+		this.authData = 'null';
+
 	}
 
 	// Store user object under "users" into Firebase database
@@ -89,12 +95,13 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Retrieve profile's data for a given id
 	this.getProfile = function() {
-		return retrieveData(userID);
+		console.log(this.userID);
+		return retrieveData(this.userID);
 	}
 
 	// Update profile
 	this.updateProfile = function(data) {
-		var user = usersRef.child(userID);
+		var user = usersRef.child(this.userID);
 		user.update(data);
 	}
 	this.addToCart =function(item){
@@ -120,10 +127,10 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	//	return {items:[{'Image':'https://image.spreadshirtmedia.net/image-server/v1/products/118898654/views/1,width=378,height=378,appearanceId=39,version=1447077209/Ansikte-smiley-30-roliga-serier-T-shirts.png', 'Title':'Orange T-Shirt', 'Price':'100 SEK', 'Id':'1'},{'Image':'http://pngimg.com/upload/tshirt_PNG5434.png', 'Title':'White T-Shirt', 'Price':'50 SEK', 'Id':'2'},{'Image':'https://cdn.qwertee.com/images/mens-black.png', 'Title':'Black T-Shirt', 'Price':'75 SEK', 'Id':'3'}]};
 	//};
 	// Get data for items of a given category
-	this.getItems = $resource('http://xml.csc.kth.se/~marang/REST_API/items/index.php');
+	this.getItems = $resource('http://xml.csc.kth.se/~marang/REST_API/items/index.php', {get:{method:"GET",cache:true}});
 
 	// Get data for an item with a specific id
-	this.getItem = $resource('http://xml.csc.kth.se/~marang/REST_API/item/index.php');
+	this.getItem = $resource('http://xml.csc.kth.se/~marang/REST_API/item/index.php', {get:{method:"GET",cache:true}});
 
 	return this;
 });

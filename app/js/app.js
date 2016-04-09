@@ -40,7 +40,7 @@ onlineClothingStoreApp.config(['$routeProvider',
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       }).
-      when('/item', {
+      when('/item/:itemId', {
         templateUrl: 'partials/item.html',
         controller: 'ItemCtrl'
       }).

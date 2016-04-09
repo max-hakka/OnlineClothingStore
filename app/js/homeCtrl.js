@@ -1,10 +1,13 @@
 onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service) {
-	Service.getItem.get(function(data){
-		console.log(data);
-	});
+	
+	$scope.updateCategory = function(category, event){
+		event.preventDefault();
+		$scope.categoryName = category.toUpperCase();
+		Service.getItems.get({"category":category}, function(data){
+			$scope.category=data;
+			console.log(data);
+		});
+	}
 
-	Service.getItems.get(function(data){
-		$scope.category=data;
-		console.log(data);
-	});
+	$scope.updateCategory("Womens", event);
 });

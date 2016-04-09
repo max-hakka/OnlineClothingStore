@@ -1,11 +1,11 @@
-<div id="header" ng-controller="NavbarCtrl">
+<div id="header" ng-controller="NavbarCtrl" ng-init="init()">
 	<h1><a href="#/home">Online Clothing Store</a></h1>
 		<div id="search_input">
 			<input placeholder="Search for products"/>
 			<button><img src="/images/search-icon.png"/></button>
 		</div>
 	
-	<a href="#/profile" ng-show="loggedIn">{{full_name}}</a>
+	<a href="#/profile">{{full_name}}</a>
 	<a href="#/cart"><img src="images/shopping-cart.png" id="shopping_cart"></a>
 	<a href="#/home" ng-click="logOut()" ng-show="loggedIn">Log Out</a>
 	<a href="#/login" ng-show="notLoggedIn">Log In</a>
