@@ -12,7 +12,7 @@ onlineClothingStoreApp.controller('LogInCtrl', function ($q, $scope, $location, 
 		response.promise.then(function(res){
 			if (res === 'success') {
 				$location.path('/home');
-				$scope.$apply()
+				//$scope.$apply();
 			}else {
 			  	console.log("User is logged out");
 			}

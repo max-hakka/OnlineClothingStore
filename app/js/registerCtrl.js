@@ -1,4 +1,4 @@
-onlineClothingStoreApp.controller('RegisterCtrl', function ($scope, Service) {
+ onlineClothingStoreApp.controller('RegisterCtrl', function ($scope, Service) {
 	
 	$scope.createProfile = function(){
 		var authentication = {email: $scope.email, password: $scope.password};

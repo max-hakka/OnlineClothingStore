@@ -3,12 +3,11 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// Create a reference to the Firebase database
 	var dataRef = new Firebase('https://clothing-store.firebaseio.com/');
 	var usersRef = dataRef.child("users");
-	this.userID = '';
 	this.userName = '';
 	this.authData = dataRef.getAuth();
 	if (this.authData) {
-		this.userID = this.authData.uid;
-		console.log("User " + this.userID + " is logged in with " + this.authData.provider);
+		var userID = this.authData.uid;
+		console.log("User " + userID + " is logged in with " + this.authData.provider);
 	}else {
 	  	console.log("User is logged out");
 	}
@@ -30,13 +29,14 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Save orders
 	this.saveOrders = function(data) {
-		var orderRef = usersRef.child(this.userID+"/orders/"+data.orderNr);
+		alert(userID);
+		var orderRef = usersRef.child(userID+"/orders/"+data.orderNr);
 		orderRef.set(data);
 	}
 
 	// Retrieve data for given order number
 	this.getOrder = function(id) {
-		return retrieveData(this.userID+"/orders/"+id);
+		return retrieveData(userID+"/orders/"+id);
 	}
 
 	// // Generate a GUID for a new user
@@ -59,7 +59,7 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		        callback("deny");
 		    } else {
 		        console.log("Authenticated successfully with payload:", authData);
-		        this.userID = authData.uid;
+		        userID = authData.uid;
 		        callback("success");
 		    }
 		}, {
@@ -70,7 +70,6 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// Log out user
 	this.logOut = function() {
 		dataRef.unauth();
-		this.authData = 'null';
 
 	}
 
@@ -87,7 +86,9 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 			}else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			    self.logIn(authentication, function(authData){
-			  		usersRef.child(authData.uid).set(data);
+			    	if(authData == "success"){
+			    		usersRef.child(userData.uid).set(data);
+			    	}
 			    });
 			  
 			}
@@ -96,13 +97,13 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Retrieve profile's data for a given id
 	this.getProfile = function() {
-		console.log(this.userID);
-		return retrieveData(this.userID);
+		return retrieveData(userID);
 	}
 
 	// Update profile
 	this.updateProfile = function(data) {
-		var user = usersRef.child(this.userID);
+		console.log(userID);
+		var user = usersRef.child(userID);
 		user.update(data);
 	}
 	this.addToCart = function(item){
