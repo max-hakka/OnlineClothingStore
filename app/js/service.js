@@ -1,10 +1,11 @@
 onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) {
 	
 	// Create a reference to the Firebase database
-	var dataRef = new Firebase('https://clothing-store.firebaseio.com/');
-	var usersRef = dataRef.child("users");
+	this.dataRef = new Firebase('https://clothing-store.firebaseio.com/');
+	var usersRef = this.dataRef.child("users");
 	this.userName = '';
-	this.authData = dataRef.getAuth();
+	var userID = 'null';
+	this.authData = this.dataRef.getAuth();
 	if (this.authData) {
 		var userID = this.authData.uid;
 		console.log("User " + userID + " is logged in with " + this.authData.provider);
@@ -48,12 +49,8 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	// }
 
 	// Log in user
-	this.logIn = function(authentication, callback){
-		console.log(authentication);
-		dataRef.authWithPassword({
-		    email: authentication.email,
-		    password: authentication.password
-		}, function(error, authData) {
+	this.logIn = function(loginData, callback){
+		this.dataRef.authWithPassword(loginData, function(error, authData){
 		    if (error) {
 		        console.log("Login Failed!", error);
 		        callback("deny");
@@ -62,22 +59,21 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		        userID = authData.uid;
 		        callback("success");
 		    }
-		}, {
+		},{
 			remember: "sessionOnly"
 		});
 	}
 
 	// Log out user
 	this.logOut = function() {
-		dataRef.unauth();
-
+		this.dataRef.unauth();
 	}
 
 	// Store user object under "users" into Firebase database
 	this.createProfile = function(authentication, data) {
 		console.log(authentication.email);
 		var self = this;
-		dataRef.createUser({
+		this.dataRef.createUser({
 			email: authentication.email,
 			password: authentication.password
 		}, function(error, userData){

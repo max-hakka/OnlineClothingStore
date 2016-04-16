@@ -2,21 +2,14 @@ onlineClothingStoreApp.controller('LogInCtrl', function ($q, $scope, $location, 
 	$scope.status = "";
 
 	$scope.logIn = function(){
-		var authentication = {email: $scope.email, password: $scope.password};
-
-		var response = $q.defer();
-		Service.logIn(authentication, function(res){
-			response.resolve(res);
-		});
-		console.log(response);
-		response.promise.then(function(res){
+		var loginData = {email: $scope.email, password: $scope.password};
+		Service.logIn(loginData, function(res){
 			if (res === 'success') {
 				$location.path('/home');
-				//$scope.$apply();
+				$scope.$apply();
 			}else {
 			  	console.log("User is logged out");
 			}
-		});
-		
+		});		
 	}
 });

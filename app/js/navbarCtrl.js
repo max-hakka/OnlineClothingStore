@@ -1,11 +1,10 @@
 onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 	$scope.itemsAmount=Service.getCart().length;
 
-	function updateStatus(){
-		if(Service.authData){
-			var data = Service.getProfile();
-			console.log(data);
-			data.promise.then(function(res){
+	function authDataCallback(authData){
+		if(authData){
+			var profileData = Service.getProfile();
+			profileData.promise.then(function(res){
 				$scope.full_name = res.personalDetails.fname + ' ' + res.personalDetails.lname;
 			});
 			$scope.loggedIn=true;
@@ -16,10 +15,11 @@ onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 			$scope.notLoggedIn=true;
 		}
 	}
-	updateStatus();
+	
+	Service.dataRef.onAuth(authDataCallback);
 
 	$scope.logOut = function(){
 		Service.logOut();
-		updateStatus();
+		authDataCallback();
 	}
 });

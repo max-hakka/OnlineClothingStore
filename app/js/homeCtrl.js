@@ -3,7 +3,6 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service) {
 	function getItems(category){
 		Service.getItems.get({"category":category}, function(data){
 			$scope.category=data;
-			console.log(data);
 		});
 	}
 
