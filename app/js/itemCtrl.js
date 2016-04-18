@@ -1,4 +1,5 @@
-onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service) {
+onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore) {
+
 	var itemId = $routeParams.itemId;
 	$scope.amount = 1;
 	Service.getItem.get({"id":itemId}, function(data){
@@ -11,4 +12,9 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		Service.addToCart(item);
 		$scope.itemsAmount=$scope.itemsAmount+1;
 	}
+
+	$scope.goToHome = function(categoryName) {
+		$cookieStore.put("categoryName", categoryName);
+	}
+
 });

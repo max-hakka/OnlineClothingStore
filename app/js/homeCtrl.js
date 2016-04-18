@@ -1,17 +1,23 @@
-onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service) {
-	$scope.categoryName = "FEATURES";
+onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookieStore) {
+	var category;
+	if("undefined" === typeof($cookieStore.get("categoryName"))){
+		category = "Features";
+	}else{
+		category = $cookieStore.get("categoryName");
+	}
+
 	function getItems(category){
+		$scope.categoryName = category.toUpperCase();
 		Service.getItems.get({"category":category}, function(data){
 			$scope.category=data;
 		});
 	}
 
 	$scope.updateCategory = function(category, event){
+		$cookieStore.put("categoryName", category);
 		event.preventDefault();
-		$scope.categoryName = category.toUpperCase();
 		getItems(category);
-		
 	}
 
-	getItems("Womens");
+	getItems(category);
 });

@@ -11,9 +11,10 @@
 <div class="content">
 	<h2>{{categoryName}}</h2>
 	<div ng-repeat="items in category">
-		<div class="clothing_item" ng-repeat="item in items">
+		<div class="clothing_item" ng-repeat="item in items" style="text-align:center;">
 			<a href="#/item"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
 			<h2><a href="#/item/{{item.Id}}">{{item.Name}}<a></h2>
+			<a href="#/item/{{item.Id}}" class="button">Shop now<a>
 			<h4><a href="#/item/{{item.Id}}">{{item.Price}} SEK</a></h4>
 		</div>
 	</div>

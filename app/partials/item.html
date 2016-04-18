@@ -1,14 +1,15 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <div class="categories">
 	<ul class="category_list">
-		  <li><a href="#/sale">Sale</a></li>
-		  <li><a href="#/mens">Mens</a></li>
-		  <li><a href="#/womens">Womens</a></li>
-		  <li><a href="#/kids">Kids</a></li>
-		  <li><a href="#/accessories">Accessories</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Womens')">Sale</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Mens')">Mens</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Womens')">Womens</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Kids')">Kids</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Accessories')">Accessories</a></li>
 	</ul>
 </div>
 <div class="content">
+	<button style="display:block; margin-top:-25px;" ng-click="$back()">Back to previous page</button>
 	<div class="clothing_item">
 		<img class="clothing" ng-src="{{item.imageUrl}}"/>
 		<div class="info">
