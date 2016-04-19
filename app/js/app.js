@@ -68,6 +68,10 @@ onlineClothingStoreApp.config(['$routeProvider',
         templateUrl: 'partials/register.html',
         controller: 'RegisterCtrl'
       }).
+      when('/help-contact', {
+        templateUrl: 'partials/help-contact.html',
+        //controller: 'helpContactCtrl'
+      }).
       otherwise({
         redirectTo: '/home'
       });
