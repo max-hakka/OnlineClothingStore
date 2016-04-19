@@ -148,7 +148,6 @@ li>a:hover, li>a:active {
     background-color: black;
 }
 div.content {
-	border:1px solid black;
 	display: inline-block;
 	float: left;
 	margin-left: 0;
@@ -235,4 +234,12 @@ img.clothing{
 .info>button{
 	margin-left: auto;
 	margin-right: auto;
+}
+#slideShow {
+	width: 700px;
+	height: auto;
+	overflow: hidden;
+	border: 1px solid black;
+	padding: 10px 0 10px 0;
+	text-align: center;
 }

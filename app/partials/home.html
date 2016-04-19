@@ -9,8 +9,16 @@
 	</ul>
 </div>
 <div class="content">
+	<div id="slideShow">
+		<img id="img" src="http://carneyteam.com/wp-content/uploads/2015/12/6_-Online-Shop.jpg" width="auto" height="270"/>
+		</br>
+		<button type="button" onclick="displayPreviousImage()">Previous</button>
+		<button type="button" onclick="displayNextImage()">Next</button>
+	</div>
+		
+	</br>
 	<h2>{{categoryName}}</h2>
-	<div ng-repeat="items in category">
+	<div ng-repeat="items in category" style="border:1px solid black;">
 		<div class="clothing_item" ng-repeat="item in items" style="text-align:center;">
 			<a href="#/item"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
 			<h2><a href="#/item/{{item.Id}}">{{item.Name}}<a></h2>
