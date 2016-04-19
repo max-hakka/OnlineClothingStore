@@ -9,6 +9,10 @@
 	text-transform: uppercase;
 	display: inline-block;
 }
+.maincontainer {
+	width: 1000px;
+	height: auto;
+}
 a{
 	text-decoration: none;
 	color:#428bca;
@@ -72,23 +76,25 @@ table td {
 	display:inline-block;
 	background-image: url("images/shopping-cart2.png");
 	background-repeat: no-repeat;
-	background-position: 0px 5px;
-	height: 35px;
+	background-position: 0px 10px;
+	height: 40px;
 	width: 30px;
 }
 #search_input{
-	margin-left: 15%;
+	margin-left: 50px;
 	margin-top: 23px;
 	display: inline-block;
 	vertical-align: top;
 }
 #search_input>input{
-	width: 200px;
-	height: 20px;
+	width: 400px;
+	height: 24px;
 	top:0;
 }
 #search_input>button{
+	margin-left: 0px;
 	width: 60px;
+	height: 30px;
 	margin: 0;
 	padding: 0;
 	vertical-align: top;
@@ -97,21 +103,22 @@ button>img{
 	height: 20px;
 	width: 20px;
 }
-#header>a{
+#header a{
+	top:0;
 	display: inline-block;
-	float: right;
-	margin-right: 50px;
+	margin-right: 25px;
 	margin-top: 25px;
 	color: #FFFFFF; 
 	font-family: 'Raleway',
 	sans-serif;
+	font-size: 12px;
 	font-weight: 800;
 	text-decoration: none;
     text-transform: uppercase;
 }
 
 .categories{
-	margin: 100px 0 0 0;
+	margin: 120px 0 0 0;
 	width: 250px;
 	float: left;
 }
@@ -122,8 +129,9 @@ ul.category_list {
 }
 
 li>a:link, li>a:visited {
+	border-radius: 10px;
     display: block;
-    font-size: 20px; 
+    font-size: 14px; 
     font-family: 'Raleway',
 	sans-serif; 
 	font-weight: 800;
@@ -144,7 +152,7 @@ div.content {
 	display: inline-block;
 	float: left;
 	margin-left: 0;
-	margin-top: 100px;
+	margin-top: 120px;
 }
 h2{
 	font-size: 18px; 
