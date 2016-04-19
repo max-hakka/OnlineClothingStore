@@ -1,6 +1,9 @@
 onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 	$scope.itemsAmount=Service.getCart().length;
 
+	var parentScope = $scope.$parent.$parent;
+	parentScope.childScope = $scope;
+
 	function authDataCallback(authData){
 		if(authData){
 			var profileData = Service.getProfile();
