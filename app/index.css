@@ -123,21 +123,22 @@ table td {
 	float: left;
 }
 ul.category_list {
+	width: 1100px;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
 li>a:link, li>a:visited {
+	float:left;
 	border-radius: 10px;
-    display: block;
     font-size: 14px; 
     font-family: 'Raleway',
 	sans-serif; 
 	font-weight: 800;
     color: #FFFFFF;
     background-color: gray;
-    width: 200px;
+    width: 150px;
     text-align: center;
     padding: 10px;
     text-decoration: none;
@@ -236,13 +237,13 @@ img.clothing{
 	margin-right: auto;
 }
 #slideShow {
-	width: 700px;
+	width: 100%;
 	height: auto;
 	overflow: hidden;
 	border: 1px solid black;
 	padding: 10px 0 10px 0;
 	text-align: center;
-	margin-top: 100px;
+	margin-top: 20px;
 }
 .leftarrow{
 	float:left;
