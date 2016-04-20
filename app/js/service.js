@@ -13,6 +13,27 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	  	console.log("User is logged out");
 	}
 
+	//Reset user password
+	this.resetPassword=function(email){
+		alert(email);
+		this.dataRef.resetPassword({
+  			email: email
+		}, function(error) {
+  		if (error) {
+		    switch (error.code) {
+		      case "INVALID_USER":
+		        console.log("The specified user account does not exist.");
+		        break;
+		      default:
+		        console.log("Error resetting password:", error);
+		    }
+		  } else {
+		    console.log("Password reset email sent successfully!");
+		  }
+		});
+	}
+
+
 	// Retrieve data from given address from firebase database
 	function retrieveData(address) {
 		var result = $q.defer();
