@@ -4,15 +4,18 @@
 			<img src="images/logo.png" height="110px" width="auto"></img>
 		</a>
 
-		<div id="search_input">
-			<input placeholder="Search for products"/>
-			<button><img src="/images/search-icon.png"/></button>
+		<div id="search_input" ng-controller="HomeCtrl">
+			<input type="text" ng-model="query" placeholder="Search for products" ng-keyup="keyUpFunction(query)"/>
+			<button ng-click="getSearch(query)" id="searchButton"><img src="/images/search-icon.png"/></button>
+			<div id="search-input-frame" ng-show="keydown" ng-repeat="items in category | filter:query" style="display: block; background-color: #FFFFFF; border: 1px solid #A0A0A0;">
+				<div ng-repeat="item in items"><a href="#/item/{{item.Id}}" class="searchResult">{{item.Name}}</a></div>
+			</div>
 		</div>
 		
 		<a href="#/profile" class="fr">{{full_name}}</a>
 		<a href="#/cart" class="shopping_cart fr" style="margin-top: 10px;"><span style="color: #FD541B; margin-top: -5px; margin-left: 5px; font-size:14px;">{{itemsAmount}}</span></a>
 		<a href="#/home" ng-click="logOut()" ng-show="loggedIn" class="fr">Log Out</a>
 		<a href="#/login" ng-show="notLoggedIn" class="fr">Log In</a>
-		<a href="#/help-contact" class="fr">Help &#38; Contact</a>
+		<a href="#/help-contact" class="fr" >Help &#38; Contact</a>
 	</div>
 </div>

@@ -2,25 +2,26 @@
 <div class="categories">
 	<ul class="category_list">
 		  <li><a href="#" ng-click="updateCategory('Womens', $event)">Sale</a></li>
-		  <li><a href="#" ng-click="updateCategory('Mens', $event)">Mens</a></li>
-		  <li><a href="#" ng-click="updateCategory('Womens', $event)">Womens</a></li>
-		  <li><a href="#" ng-click="updateCategory('Kids', $event)">Kids</a></li>
+		  <li><a href="#" ng-click="updateCategory('Mens', $event)">Men's</a></li>
+		  <li><a href="#" ng-click="updateCategory('Womens', $event)">Women's</a></li>
+		  <li><a href="#" ng-click="updateCategory('Kids', $event)">Kids'</a></li>
 		  <li><a href="#" ng-click="updateCategory('Accessories', $event)">Accessories</a></li>
 	</ul>
 </div>
+
 <div class="content">
 	<div id="slideShow">
 		<img id="img" src="http://carneyteam.com/wp-content/uploads/2015/12/6_-Online-Shop.jpg" width="auto" height="270"/>
 		</br>
-		<button type="button" onclick="displayPreviousImage()">Previous</button>
-		<button type="button" onclick="displayNextImage()">Next</button>
+		<button type="button" class="leftarrow" onclick="displayPreviousImage()">&#10096;</button>
+		<button type="button" class="rightarrow"onclick="displayNextImage()">&#10097;</button>
 	</div>
 		
 	</br>
 	<h2>{{categoryName}}</h2>
 	<div ng-repeat="items in category" style="border:1px solid black;">
 		<div class="clothing_item" ng-repeat="item in items" style="text-align:center;">
-			<a href="#/item"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
+			<a href="#/item/{{item.Id}}"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
 			<h2><a href="#/item/{{item.Id}}">{{item.Name}}<a></h2>
 			<a href="#/item/{{item.Id}}" class="button">Shop now<a>
 			<h4><a href="#/item/{{item.Id}}">{{item.Price}} SEK</a></h4>

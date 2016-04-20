@@ -66,7 +66,7 @@ table td {
 }
 #header{
 	height: 80px;
-	background-color: #2CA4B0;
+	background-color: #A0A0A0;
 	left:0;
 	right:0;
 	top:0;
@@ -87,7 +87,7 @@ table td {
 	vertical-align: top;
 }
 #search_input>input{
-	width: 400px;
+	width: 300px;
 	height: 24px;
 	top:0;
 }
@@ -99,7 +99,7 @@ table td {
 	padding: 0;
 	vertical-align: top;
 }
-button>img{
+#searchButton>img{
 	height: 20px;
 	width: 20px;
 }
@@ -144,14 +144,14 @@ li>a:link, li>a:visited {
     text-transform: uppercase;
     border:1px solid white;
 }
-li>a:hover, li>a:active {
+li>a:hover, li>a:active, li>a:focus{
     background-color: black;
 }
 div.content {
 	display: inline-block;
 	float: left;
 	margin-left: 0;
-	margin-top: 120px;
+	margin-top: 0;
 }
 h2{
 	font-size: 18px; 
@@ -242,4 +242,31 @@ img.clothing{
 	border: 1px solid black;
 	padding: 10px 0 10px 0;
 	text-align: center;
+	margin-top: 100px;
+}
+.leftarrow{
+	float:left;
+	text-align: center;
+	font-size: 25px;
+	height: 40px;
+	background-color: #A0A0A0;
+	color:#FFFFFF;
+}
+.rightarrow{
+	float:right;
+	text-align: center;
+	font-size: 25px;
+	height: 40px;
+	background-color: #A0A0A0;
+	color:#FFFFFF;
+}
+.search-input-frame{
+	border: 1px solid #A0A0A0 !important;
+	background-color: #FFFFFF !important;
+}
+a.searchResult{
+    color: black !important;
+    font-family: Arial, Helvetica serif !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
 }

@@ -72,6 +72,14 @@ onlineClothingStoreApp.config(['$routeProvider',
         templateUrl: 'partials/help-contact.html',
         //controller: 'helpContactCtrl'
       }).
+      when('/reset-password', {
+        templateUrl: 'partials/reset-password.html',
+        controller: 'ResetPasswordCtrl'
+      }).
+      when('/search', {
+        templateUrl: 'partials/search.html',
+        controller: 'SearchCtrl'
+      }).
       otherwise({
         redirectTo: '/home'
       });

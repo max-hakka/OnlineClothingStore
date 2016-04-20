@@ -1,4 +1,4 @@
-onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookieStore) {
+onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookieStore, $location) {
 	var category;
 	if("undefined" === typeof($cookieStore.get("categoryName"))){
 		category = "Features";
@@ -6,23 +6,43 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		category = $cookieStore.get("categoryName");
 	}
 
-	function getItems(category){
-		$scope.categoryName = category.toUpperCase();
-		Service.getItems.get({"category":category}, function(data){
-			$scope.category=data;
+	function getItems(keyword, query){
+		$scope.categoryName = query.toUpperCase();
+		var sort = '{"'+keyword+'":"'+query+'"}';
+		var a = JSON.parse(sort);
+		Service.getItems.get(a, function(data){
+			if(keyword == "category"){
+				$scope.category=data;
+				console.log(data);
+			}else{
+				$cookieStore.put("searchResult", data);
+			}
 		});
 	}
+
+	$scope.getSearch=function(query){
+		getItems('keyword',query);
+		$cookieStore.put("query", query);
+		$location.path("/search");
+	}
+		
+	getItems("category", category);
 
 	$scope.updateCategory = function(category, event){
 		$cookieStore.put("categoryName", category);
 		event.preventDefault();
-		getItems(category);
+		getItems("category", category);
 	}
 
-	getItems(category);
-
-		
+	$scope.keyUpFunction = function(query) {
+		console.log(query);
+		if (query.length>1){
+			getItems("keyword", query);
+			$scope.keydown=true;
+		}
+	}
 });
+
 
 function displayNextImage() {
     x = (x === images.length - 1) ? 0 : x + 1;

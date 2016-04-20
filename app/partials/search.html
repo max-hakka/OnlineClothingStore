@@ -1,0 +1,12 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="content" style="margin-top: 100px;">
+<h2>Showing results for: {{searchQuery}}</h2>
+	<div ng-repeat="items in searchResult" style="border:1px solid black; ">
+		<div class="clothing_item" ng-repeat="item in items" style="text-align:center;">
+			<a href="#/item/{{item.Id}}"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
+			<h2><a href="#/item/{{item.Id}}">{{item.Name}}<a></h2>
+			<a href="#/item/{{item.Id}}" class="button">Shop now<a>
+			<h4><a href="#/item/{{item.Id}}">{{item.Price}} SEK</a></h4>
+		</div>
+	</div>
+</div>
