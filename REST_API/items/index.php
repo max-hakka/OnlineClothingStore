@@ -12,9 +12,17 @@
 		printf("Connection failed: %s\n", mysqli_connect_error());
 		exit();
 	}
-
-	$category='mens';
-	$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category='$category'";
+	if (isset($_GET['keyword'])){
+		$keyword=$_GET['keyword'];
+		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Title LIKE '%$keyword%'";
+	}elseif (isset($_GET['category'])) {
+		$category=$_GET['category'];
+		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category LIKE '$category%'";
+	} else {
+		$keyword="";
+		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Title LIKE '$keyword%'";
+	}
+	
 
 	if (($result=mysqli_query($link, $query)) === false) {
 	  	printf("Query failed: %s <br />\n%s", $query, mysqli_error($link));
@@ -25,7 +33,7 @@
 	$rowcount=mysqli_num_rows($result);
 	$i = 1;
 	while ($row=$result->fetch_object()) {
-		$element = '{"Name":"'.$row->Title.'", "Price":"'.$row->Price.'", "Description":"'.$row->Description.'", "imageUrl":"'.$row->Image_url.'"}';
+		$element = '{"Id":"'.$row->Id.'", "Name":"'.$row->Title.'", "Price":"'.$row->Price.'", "Description":"'.$row->Description.'", "imageUrl":"'.$row->Image_url.'"}';
 		if ($i != $rowcount){
 			$items .= $element.',';
 		}else{

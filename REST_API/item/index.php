@@ -13,7 +13,7 @@
 		exit();
 	}
 
-	$id='123';
+	$id=$_GET['id'];
 	$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Id='$id'";
 
 	if (($result=mysqli_query($link, $query)) === false) {
@@ -36,7 +36,7 @@
 		}
 		$i = $i + 1;
 	}
-	$data='{"Name":"'.$res['Title'].'", "Category":"'.$res['Category'].'", "Price":"'.$res['Price'].'", "Description":"'.$res['Description'].'", "Country":"'.$res['Country'].'", "imageUrl":"'.$res['Image_url'].'", "Quantities":['.$quantities.']}';
+	$data='{"Id":"'.$res['Id'].'", "Name":"'.$res['Title'].'", "Category":"'.$res['Category'].'", "Price":"'.$res['Price'].'", "Description":"'.$res['Description'].'", "Country":"'.$res['Country'].'", "imageUrl":"'.$res['Image_url'].'", "Quantities":['.$quantities.']}';
 
 	print_r($data);
 	mysqli_free_result($result);
