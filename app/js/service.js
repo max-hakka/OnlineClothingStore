@@ -33,6 +33,31 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		});
 	}
 
+	//Change user password
+	this.changePassword=function(oldPassword, newPassword){
+		email=this.authData.password.email;
+		this.dataRef.changePassword({
+		 	email: email,
+		 	oldPassword: oldPassword,
+		 	newPassword: newPassword
+		}, function(error) {
+		  if (error) {
+		    switch (error.code) {
+		      case "INVALID_PASSWORD":
+		        console.log("The specified user account password is incorrect.");
+		        break;
+		      case "INVALID_USER":
+		        console.log("The specified user account does not exist.");
+		        break;
+		      default:
+		        console.log("Error changing password:", error);
+		    }
+		  } else {
+		    console.log("User password changed successfully!");
+		  }
+		});
+	}
+
 
 	// Retrieve data from given address from firebase database
 	function retrieveData(address) {
@@ -77,6 +102,7 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		        callback("deny");
 		    } else {
 		        console.log("Authenticated successfully with payload:", authData);
+		        this.authData = authData;
 		        userID = authData.uid;
 		        callback("success");
 		    }

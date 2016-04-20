@@ -76,6 +76,10 @@ onlineClothingStoreApp.config(['$routeProvider',
         templateUrl: 'partials/reset-password.html',
         controller: 'ResetPasswordCtrl'
       }).
+      when('/change-password', {
+        templateUrl: 'partials/change-password.html',
+        controller: 'ChangePasswordCtrl'
+      }).
       when('/search', {
         templateUrl: 'partials/search.html',
         controller: 'SearchCtrl'
