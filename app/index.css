@@ -66,7 +66,7 @@ table td {
 }
 #header{
 	height: 80px;
-	background-color: #A0A0A0;
+	background-color: #23B9DB;
 	left:0;
 	right:0;
 	top:0;
@@ -132,15 +132,15 @@ ul.category_list {
 li>a:link, li>a:visited {
 	float:left;
 	border-radius: 10px;
-    font-size: 14px; 
+    font-size: 13px; 
     font-family: 'Raleway',
 	sans-serif; 
 	font-weight: 800;
     color: #FFFFFF;
     background-color: gray;
-    width: 150px;
+    width: 140px;
     text-align: center;
-    padding: 10px;
+    padding: 8px;
     text-decoration: none;
     text-transform: uppercase;
     border:1px solid white;
@@ -270,4 +270,29 @@ a.searchResult{
     font-family: Arial, Helvetica serif !important;
     font-weight: 400 !important;
     text-transform: none !important;
+}
+#dropdownMenu{
+	background-color: rgba(192, 195, 196, 0.9);;
+	width: 150px;
+	height: 200px;
+	border:1px solid white;
+	border-radius: 10px;
+	margin-top:-60px;
+}
+#dropdownMenu>a{
+	font-weight: 100;
+	margin-right: 10px;
+	color:black;
+	text-transform: capitalize; 
+}
+#dMenu-icon{
+	background-image: url("images/menu-icon.png");
+	width: 25px;
+	height: 25px;
+	margin-top: 20px;
+	background-size: 25px 25px;
+}
+#dMenu-icon:hover{
+	background-image: url("images/menu-icon-gray.png");
+	cursor: pointer;
 }
