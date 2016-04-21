@@ -7,7 +7,7 @@
 		<div id="search_input" ng-controller="HomeCtrl">
 			<input type="text" ng-model="query" placeholder="Search for products" ng-keyup="keyUpFunction(query)"/>
 			<button ng-click="getSearch(query)" id="searchButton"><img src="/images/search-icon.png"/></button>
-			<div id="search-input-frame" ng-show="keydown" ng-repeat="items in category | filter:query" style="display: block; background-color: #FFFFFF; border: 1px solid #A0A0A0;">
+			<div id="search-input-frame" ng-show="keydown" ng-repeat="items in searchResult | filter:query" style="display: block; background-color: #FFFFFF; border: 1px solid #A0A0A0;">
 				<div ng-repeat="item in items"><a href="#/item/{{item.Id}}" class="searchResult">{{item.Name}}</a></div>
 			</div>
 		</div>

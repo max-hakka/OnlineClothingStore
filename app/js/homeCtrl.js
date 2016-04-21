@@ -6,7 +6,7 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		category = $cookieStore.get("categoryName");
 	}
 
-	function getItems(keyword, query){
+	$scope.getItems=function(keyword, query){
 		$scope.categoryName = query.toUpperCase();
 		var sort = '{"'+keyword+'":"'+query+'"}';
 		var a = JSON.parse(sort);
@@ -15,30 +15,34 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 				$scope.category=data;
 				console.log(data);
 			}else{
-				$cookieStore.put("searchResult", data);
+				$scope.searchResult=data;
+				console.log(data);
 			}
 		});
 	}
 
 	$scope.getSearch=function(query){
-		getItems('keyword',query);
+		$scope.getItems('keyword',query);
 		$cookieStore.put("query", query);
 		$location.path("/search");
 	}
 		
-	getItems("category", category);
+	$scope.getItems("category", category);
 
 	$scope.updateCategory = function(category, event){
 		$cookieStore.put("categoryName", category);
 		event.preventDefault();
-		getItems("category", category);
+		$scope.getItems("category", category);
 	}
 
 	$scope.keyUpFunction = function(query) {
 		console.log(query);
 		if (query.length>1){
-			getItems("keyword", query);
+			$scope.getItems("keyword", query);
 			$scope.keydown=true;
+		}
+		else if (query==false || query==" "){
+			$scope.keydown=false;
 		}
 	}
 });

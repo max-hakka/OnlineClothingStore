@@ -1,4 +1,5 @@
-onlineClothingStoreApp.controller('SearchCtrl', function ($scope, Service, $cookieStore) {
+onlineClothingStoreApp.controller('SearchCtrl', function ($scope, Service, $cookieStore, $controller) {
+	$controller('HomeCtrl', {$scope:$scope});
 	$scope.searchQuery=$cookieStore.get("query");
-	$scope.searchResult=$cookieStore.get("searchResult");
+	$scope.searchResult=$scope.getItems("keyword", $scope.searchQuery);
 });
