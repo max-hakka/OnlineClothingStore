@@ -1,6 +1,7 @@
 onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore) {
 	$scope.childScope = {};
 	$scope.amount = 0;
+	$scope.sizes = ["S", "M", "L"];
 	var quantities;
 	var itemId = $routeParams.itemId;
 	Service.getItem.get({"id":itemId}, function(data){
@@ -23,24 +24,22 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		var list = [];
 		if($scope.selectedSize){
 			for (i=0; i < quantities.length; i++){
-				if ($scope.selectedSize.Size==quantities[i].Size){
+				if ($scope.selectedSize==quantities[i].Size && $.inArray(quantities[i].Color, list)==-1){
 					list.push(quantities[i].Color);
-				}			
+				}
 			}
 			$scope.colors=list;
 		}else{
 			$scope.colors=undefined;
 		}
-
 	}
 
 	$scope.getAmount = function(){
 		console.log($scope.selectedColor);
-
 		var n = 0;
 		for (i=0; i < quantities.length; i++){
-			if ($scope.selectedSize.Size==quantities[i].Size && $scope.selectedColor==quantities[i].Color){
-				n+=1;
+			if ($scope.selectedSize==quantities[i].Size && $scope.selectedColor==quantities[i].Color){
+				n=quantities[i].Quantity;
 			}
 		}
 		$scope.amount=n;

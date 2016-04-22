@@ -6,40 +6,84 @@
 		  <li><a href="#/home" ng-click="goToHome('Womens')">Women's</a></li>
 		  <li><a href="#/home" ng-click="goToHome('Kids')">Kids'</a></li>
 		  <li><a href="#/home" ng-click="goToHome('Accessories')">Accessories</a></li>
+		  <li><a href="#/help-contact" class="fr">Help &#38; Contact</a></li>
 	</ul>
 </div>
-<div class="content">
-	<button style="display:block; margin-top:-25px;" ng-click="$back()">Back to previous page</button>
-	<div class="clothing_item">
-		<img class="clothing" ng-src="{{item.imageUrl}}"/>
-		<div class="info">
+<div class="content maincontainer">
+	<button style="display:block; margin-top:25px; border-radius:5px;" ng-click="$back()">Back to previous page</button>
+	<div class="clothing_item" style="width:100%;margin-top:10px;">
+		<div class="d-ib fl" style="width:35%;">
+			<div style="width:100%;border:1px solid gray;border-radius:3px;">
+				<img class="clothing" ng-src="{{item.imageUrl}}"/>
+			</div>
+			<div class="d-ib fl">
+				<img class="clothing" ng-src="{{item.imageUrl}}" style="width:80px;height:50px;border:1px solid gray;"/>
+			</div>
+		</div>
+		
+		<div class="info d-ib fl" style="width:60%;padding-left:20px;">
 			<h3>{{item.Name}}</h3>
 			<span class="price">{{item.Price}} SEK</span>
 			<br>
-			<button id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
+			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
 			<br>
 			<br>
-			<strong>Size:</strong>
-			<select ng-model="selectedSize" ng-options="size as size.Size for size in item.Quantities" ng-change="getColors()">
-				<option value="">---select size---</option>
-			</select>
+
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Size:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					<select ng-model="selectedSize" ng-options="size for size in sizes" ng-change="getColors()" style="width:200px;height:25px;border-radius:5px;">
+						<option value="">---select size---</option>
+					</select>
+				</div>
+			</div>
+			
 			<br>
-			<strong>Color:</strong>
-			<select ng-model="selectedColor" ng-options="color for color in colors" ng-change="getAmount()">
-				<option value="">---select color---</option>
-			</select>
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Color:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					<select ng-model="selectedColor" ng-options="color for color in colors" ng-change="getAmount()" style="width:200px;height:25px;border-radius:5px;">
+						<option value="">---select color---</option>
+					</select>
+				</div>
+			</div>
 			<br>
-			<strong>Amount:</strong>
-			<input type="number" value="1" min="1"></input> {{amount}} available
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Amount:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					<input type="number" value="1" min="1"></input> {{amount}} available
+				</div>
+			</div>			
 			<br>
-			<strong>Category:</strong>
-			{{item.Category}}
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Category:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					{{item.Category}}
+				</div>
+			</div>
 			<br>
-			<strong>Description:</strong>
-			{{item.Description}}
-			<br>
-			<strong>Region of Manufacture:</strong>
-			{{item.Country}}
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Region of Manufacture:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					{{item.Country}}
+				</div>
+			</div>
+			<br><br>
+			<div class="d-ib">
+				<strong>Description</strong>
+				<br>
+				{{item.Description}}
+			</div>
 		</div>
 	</div>
 </div>
