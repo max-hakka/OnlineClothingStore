@@ -1,10 +1,30 @@
 onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookieStore, $location) {
 	var category;
+
 	if("undefined" === typeof($cookieStore.get("categoryName"))){
-		category = "Features";
+		category = "Featured";
 	}else{
 		category = $cookieStore.get("categoryName");
 	}
+
+	function toggleSlideShow(category){
+		if(category=="Featured"){
+			$scope.displayedSlide=true;
+		}else{
+			$scope.displayedSlide=false;
+		}
+	}
+
+	function changeBGColor(category){
+		var selected = $("ul").find(".selected");
+		selected.css("background-color", "gray");
+		selected.attr("class", "");
+		$("#"+category).css("background-color", "black");
+		$("#"+category).attr("class", "selected");
+	}
+
+	toggleSlideShow(category);
+	changeBGColor(category);
 
 	$scope.getItems=function(keyword, query){
 		$scope.categoryName = query.toUpperCase();
@@ -30,8 +50,10 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 	$scope.getItems("category", category);
 
 	$scope.updateCategory = function(category, event){
-		$cookieStore.put("categoryName", category);
 		event.preventDefault();
+		toggleSlideShow(category);
+		changeBGColor(category);
+		$cookieStore.put("categoryName", category);
 		$scope.getItems("category", category);
 	}
 
