@@ -87,3 +87,14 @@
 		</div>
 	</div>
 </div>
+<div class="content" id="recommendations" ng-controller="HomeCtrl">
+	<h4 style="font-size: 18px; text-align:left;">You might also like:</h4>
+	<div ng-repeat="items in category" style="border:1px solid black; ">
+		<div class="clothing_item" ng-repeat="item in items" style="text-align:center;">
+			<a href="#/item/{{item.Id}}"><img class="clothing" ng-src="{{item.imageUrl}}"/></a>
+			<h2><a href="#/item/{{item.Id}}">{{item.Name}}<a></h2>
+			<a href="#/item/{{item.Id}}" class="button">Shop now<a>
+			<h4><a href="#/item/{{item.Id}}">{{item.Price}} SEK</a></h4>
+		</div>
+	</div>
+</div>
