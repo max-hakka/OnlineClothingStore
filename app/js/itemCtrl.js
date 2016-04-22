@@ -1,12 +1,11 @@
-onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore, $q) {
+onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore) {
 	$scope.childScope = {};
-	$scope.colors=["select color"];
-
+	$scope.amount = 0;
+	var quantities;
 	var itemId = $routeParams.itemId;
-	$scope.amount = 1;
 	Service.getItem.get({"id":itemId}, function(data){
 		$scope.item=data;
-		console.log(data);
+		quantities = $scope.item.Quantities;
 	});
 	
 	$scope.addToCart = function() {
@@ -19,19 +18,31 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		$cookieStore.put("categoryName", categoryName);
 	}
 
-	$scope.getColors = function(size){
-		alert(size);
+	$scope.getColors = function(){
 		var quantities = $scope.item.Quantities;
 		var list = [];
-		var result = $q.defer();
-		console.log(list);
+		if($scope.selectedSize){
+			for (i=0; i < quantities.length; i++){
+				if ($scope.selectedSize.Size==quantities[i].Size){
+					list.push(quantities[i].Color);
+				}			
+			}
+			$scope.colors=list;
+		}else{
+			$scope.colors=undefined;
+		}
+
+	}
+
+	$scope.getAmount = function(){
+		console.log($scope.selectedColor);
+
+		var n = 0;
 		for (i=0; i < quantities.length; i++){
-			if (size==quantities[i].Size){
-				list.push(quantities[i].Color);
-			}else if(i == quantities.length-1){
-				result.resolve(list);
+			if ($scope.selectedSize.Size==quantities[i].Size && $scope.selectedColor==quantities[i].Color){
+				n+=1;
 			}
 		}
-		$scope.colors=result;
+		$scope.amount=n;
 	}
 });

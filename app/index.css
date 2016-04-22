@@ -244,6 +244,7 @@ img.clothing{
 	padding: 10px 0 10px 0;
 	text-align: center;
 	margin-top: 20px;
+	border-radius: 10px;
 }
 .leftarrow{
 	float:left;
