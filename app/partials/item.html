@@ -10,7 +10,7 @@
 	</ul>
 </div>
 <div class="content maincontainer">
-	<button style="display:block; margin-top:25px; border-radius:5px;" ng-click="$back()">Back to previous page</button>
+	<button class="backButton" ng-click="$back()">Back to previous page</button>
 	<div class="clothing_item" style="width:100%;margin-top:10px;">
 		<div class="d-ib fl" style="width:35%;">
 			<div style="width:100%;border:1px solid gray;border-radius:3px;">
@@ -24,9 +24,6 @@
 		<div class="info d-ib fl" style="width:60%;padding-left:20px;">
 			<h3>{{item.Name}}</h3>
 			<span class="price">{{item.Price}} SEK</span>
-			<br>
-			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
-			<br>
 			<br>
 
 			<div class="d-ib">
@@ -59,7 +56,11 @@
 				<div class="t-rc d-ib">
 					<input type="number" ng-model="selectedAmount" min="1"></input> {{amount}} available
 				</div>
-			</div>			
+			</div>
+			<br>
+			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
+			<br>
+			<span ng-show="addedToCart" style="color:green;text-align:center;display:block;">Added to cart</span>
 			<br>
 			<div class="d-ib">
 				<div class="t-lc">

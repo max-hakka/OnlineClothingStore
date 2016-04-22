@@ -3,6 +3,7 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 	$scope.amount = 0;
 	$scope.sizes = ["S", "M", "L"];
 	$scope.selectedAmount = 1;
+	$scope.addedToCart = false;
 	var quantities;
 	var itemId = $routeParams.itemId;
 	Service.getItem.get({"id":itemId}, function(data){
@@ -14,6 +15,7 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		var item = {'name': $scope.item.Name, 'price': $scope.item.Price, 'size': $scope.selectedSize, 'color': $scope.selectedColor,'amount': $scope.selectedAmount};
 		Service.addToCart(item);
 		$scope.childScope.itemsAmount=Service.getCart().length;
+		$scope.addedToCart = true;
 	}
 
 	$scope.goToHome = function(categoryName) {

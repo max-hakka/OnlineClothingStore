@@ -315,3 +315,6 @@ a.searchResult{
 .t-rc{
 	width: 300px; margin-left:10px;
 }
+.backButton{
+	display:block; margin-top:25px; border-radius:5px; cursor: pointer;
+}
