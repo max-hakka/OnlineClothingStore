@@ -1,13 +1,16 @@
-onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore) {
+onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Service, $cookieStore, $controller) {
+	$controller("HomeCtrl", {$scope:$scope});
 	$scope.childScope = {};
 	$scope.amount = 0;
 	$scope.sizes = ["S", "M", "L"];
 	$scope.selectedAmount = 1;
 	$scope.addedToCart = false;
+	$scope.mySwitch=true;
 	var quantities;
 	var itemId = $routeParams.itemId;
 	Service.getItem.get({"id":itemId}, function(data){
 		$scope.item=data;
+		$scope.getItems("category", $scope.item.Category);
 		quantities = $scope.item.Quantities;
 	});
 	
@@ -22,6 +25,19 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		$cookieStore.put("categoryName", categoryName);
 	}
 
+	function buttonDisabled(disabled){
+		if (!disabled){
+			$scope.mySwitch=true;
+			$(".add_to_cart").css("background-color", "rgba(128,128,128,0.1)");
+			$(".add_to_cart").css("cursor", "auto");
+		}
+		else{
+			$scope.mySwitch=false;
+			$(".add_to_cart").css("background-color", "grey");
+			$(".add_to_cart").css("cursor", "pointer");
+		}
+	}
+
 	$scope.getColors = function(){
 		var quantities = $scope.item.Quantities;
 		var list = [];
@@ -34,6 +50,7 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 			$scope.colors=list;
 		}else{
 			$scope.colors=undefined;
+			buttonDisabled(false);
 		}
 	}
 
@@ -46,5 +63,7 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 			}
 		}
 		$scope.amount=n;
+		buttonDisabled(n);
 	}
+	
 });
