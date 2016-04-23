@@ -56,7 +56,7 @@ onlineClothingStoreApp.config(['$routeProvider',
         templateUrl: 'partials/cart.html',
         controller: 'CartCtrl'
       }).
-      when('/receipt', {
+      when('/receipt/:orderNr', {
         templateUrl: 'partials/receipt.html',
         controller: 'ReceiptCtrl'
       }).
