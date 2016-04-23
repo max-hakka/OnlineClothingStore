@@ -5,6 +5,7 @@
 	<form>
 		<table>
 			<tr>
+				<th width="50" style="background-color:white;"></th>
 				<th width="250"><span class="fl">Item</span></th>
 				<th width="100"><span class="fl">Price</span></th>
 				<th width="100"><span class="fl">Size</span></th>
@@ -12,6 +13,7 @@
 				<th width="100"><span class="fl">Amount</span></th>
 			</tr>
 			<tr ng-repeat="item in cart.items track by $index">
+				<td style="background-color:white;"><img id="{{item.Id}}" data-item="{{item}}" src="images/button-remove_red.png" style="width:40px;height:40px;margin-top:10px;cursor:pointer;" ng-click="removeItem($event)"/></td>
 				<td>{{item.name}}</td>
 				<td>SEK {{item.price}}</td>
 				<td>{{item.size}}</td>
@@ -20,7 +22,7 @@
 			</tr>
 		</table>
 		</br>
-		<span class="fr">TOTAL: SEK 300</span>
+		<span class="fr">TOTAL: SEK {{getTotalCost()}}</span>
 		</br>
 		</br>
 		<a href="#/receipt" class="button fr" ng-click="saveOrders()">Check out</a>

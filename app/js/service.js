@@ -158,13 +158,13 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	this.deleteFromCart =function(item){
 		items=$cookieStore.get("items");
 		for (key in items){
-			if (item.Id = items[key].Id){
+			if (item.Id == items[key].Id && item.size == items[key].size){
 				items.splice(key,1);
 			};
 		};			
 		$cookieStore.put("items", items);
-
 	}
+
 	this.getCart=function(){
 		return $cookieStore.get("items");
 	}
