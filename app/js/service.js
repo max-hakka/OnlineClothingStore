@@ -117,7 +117,6 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Store user object under "users" into Firebase database
 	this.createProfile = function(authentication, data) {
-		console.log(authentication.email);
 		var self = this;
 		this.dataRef.createUser({
 			email: authentication.email,

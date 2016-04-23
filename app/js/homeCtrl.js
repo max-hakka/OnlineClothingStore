@@ -76,23 +76,26 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 
 	$scope.displayNextImage = function() {
 	    x = (x === images.length - 1) ? 0 : x + 1;
-	    document.getElementById("img").src = images[x].imageUrl;
+	    var e = document.getElementById("imgSlideshow");
+	    if(e != null){
+	    	e.src = images[x].imageUrl;
+	    }
 	}
 
 	$scope.displayPreviousImage = function() {
 	    x = (x <= 0) ? images.length - 1 : x - 1;
-	    document.getElementById("img").src = images[x].imageUrl;
-	}
-
-	function startTimer() {
-	    setInterval($scope.displayNextImage, 3000);
+	    document.getElementById("imgSlideshow").src = images[x].imageUrl;
 	}
 
 	var images, x = -1;
 	
 	Service.getItems.get({"category":"slideshow"}, function(res){
 		images = res.data;
-		startTimer();
 	});
-
+	
+	var nIntervId = setInterval($scope.displayNextImage, 3000);
+	
+	$scope.$on('$destroy', function() {
+		clearInterval(nIntervId);
+	});
 });

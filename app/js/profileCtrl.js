@@ -14,6 +14,6 @@ onlineClothingStoreApp.controller('ProfileCtrl', function ($scope, Service) {
 		for (key in $scope.orders){
 			$scope.totalCost = Service.calTotalCost($scope.orders[key].items);
 		}
-		
 	});
 });
+
