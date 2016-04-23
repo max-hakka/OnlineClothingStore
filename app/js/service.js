@@ -128,6 +128,7 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 				console.log("Error creating user:", error);
 			}else {
 			    console.log("Successfully created user account with uid:", userData.uid);
+			    userID = userData.uid;
 			    self.logIn(authentication, function(authData){
 			    	if(authData == "success"){
 			    		usersRef.child(userData.uid).set(data);

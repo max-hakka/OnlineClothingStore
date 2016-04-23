@@ -2,45 +2,46 @@
 <div id="register" class="mainContainer center table">
 	<button class="backButton" ng-click="$back()">Back to previous page</button>
 	<h1>New Account</h1>
-	<form>
+	<span style="color:red;">* Required</span>
+	<form name="myForm" novalidate ng-submit="createProfile(myForm)">
 		<table>
 			<tr>
 				<td colspan="2" width="300px"><h3 style="margin-top: 15px; margin-bottom: 0;">Personal details</h3></td>
 			</tr>
 			<tr>
-				<td>First name:</td>
+				<td>First name<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" ng-model="fname"/>
+					<input type="text" name="fn" ng-model="fname" required>
 				</td>
 			</tr>
 			<tr>
-				<td>Last name:</td>
+				<td>Last name<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" ng-model="lname"/>
+					<input type="text" ng-model="lname" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>Mobile:</td>
+				<td>Mobile<span style="color:red;">*</span></td>
 				<td>
-					<input type="tel" ng-model="mobile"/>
+					<input type="tel" ng-model="mobile" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>Email:</td>
+				<td>Email<span style="color:red;">*</span></td>
 				<td>
-					<input type="email" ng-model="email"/>
+					<input type="email" ng-model="email" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>Password:</td>
+				<td>Password<span style="color:red;">*</span></td>
 				<td>
-					<input type="password" ng-model="password"/>
+					<input type="password" ng-model="password" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>Confirm Password:</td>
+				<td>Confirm Password<span style="color:red;">*</span></td>
 				<td>
-					<input type="password" ng-model="password2"/>
+					<input type="password" ng-model="password2" required/>
 				</td>
 			</tr>
 			<tr>
@@ -53,24 +54,25 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Street name:</td>
+				<td>Street name<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" ng-model="street"/>
+					<input type="text" ng-model="street" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>Postal code:</td>
+				<td>Postal code<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" ng-model="postalCode"/>
+					<input type="text" ng-model="postalCode" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>City:</td>
+				<td>City<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" ng-model="city"/>
+					<input type="text" ng-model="city" required/>
 				</td>
 			</tr>
 		</table>
-		<a href="#/home" class="button fr" ng-click="createProfile()">Register</a>
+		<input type="submit" class="button fr" value="Register"/>
 	</form>
+	<span style="color:red;" ng-show="valid">All fields with * must be filled!</span>
 </div>
