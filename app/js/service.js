@@ -76,7 +76,6 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 
 	// Save orders
 	this.saveOrders = function(data) {
-		alert(userID);
 		var orderRef = usersRef.child(userID+"/orders/"+data.orderNr);
 		orderRef.set(data);
 	}
@@ -166,7 +165,7 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		$cookieStore.put("items", items);
 	}
 
-	this.deleteFromCart =function(){
+	this.emptyCart = function(){
 		$cookieStore.put("items", []);
 	}
 
