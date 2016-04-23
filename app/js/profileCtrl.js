@@ -11,5 +11,9 @@ onlineClothingStoreApp.controller('ProfileCtrl', function ($scope, Service) {
 		$scope.postalCode = res.shippingAddress.postalCode;
 		$scope.city = res.shippingAddress.city;
 		$scope.orders = res.orders;
+		for (key in $scope.orders){
+			$scope.totalCost = Service.calTotalCost($scope.orders[key]);
+		}
+		
 	});
 });

@@ -34,6 +34,8 @@
 			<tr>
 				<th width="250"><span class="fl">Item</span></th>
 				<th width="100"><span class="fl">Price</span></th>
+				<th width="100"><span class="fl">Size</span></th>
+				<th width="100"><span class="fl">Color</span></th>
 				<th width="100">
 					<span class="fl">Amount</span>
 				</th>
@@ -41,12 +43,14 @@
 			<tr ng-repeat="item in order.items track by $index">
 				<td>{{item.name}}</td>
 				<td>SEK {{item.price}}</td>
+				<td>{{item.size}}</td>
+				<td>{{item.color}}</td>
 				<td>{{item.amount}}x</td>
 			</tr>
 		</table>
 		</br>
 		<span>Shipped: {{order.shipped}}</span>
-		<span class="fr">TOTAL: SEK 300</span>
+		<span class="fr">TOTAL: SEK {{totalCost}}</span>
 		</br></br>
 	</div>
 </div>

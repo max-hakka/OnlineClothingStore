@@ -166,6 +166,10 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		$cookieStore.put("items", items);
 	}
 
+	this.deleteFromCart =function(){
+		$cookieStore.put("items", []);
+	}
+
 	this.getCart=function(){
 		return $cookieStore.get("items");
 	}

@@ -9,6 +9,7 @@ onlineClothingStoreApp.controller('CartCtrl', function ($scope, Service, $locati
 		event.preventDefault();
 		if (Service.authData){
 			Service.saveOrders($scope.cart);
+			Service.emptyCart();
 			$location.path('/receipt');
 		}else{
 			$location.path('/login');
