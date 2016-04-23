@@ -30,11 +30,13 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 			$scope.mySwitch=true;
 			$(".add_to_cart").css("background-color", "rgba(128,128,128,0.1)");
 			$(".add_to_cart").css("cursor", "auto");
+			$(".amount").css("color", "red");
 		}
 		else{
 			$scope.mySwitch=false;
 			$(".add_to_cart").css("background-color", "grey");
 			$(".add_to_cart").css("cursor", "pointer");
+			$(".amount").css("color", "black");
 		}
 	}
 
