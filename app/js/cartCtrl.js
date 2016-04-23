@@ -9,7 +9,7 @@ onlineClothingStoreApp.controller('CartCtrl', function ($scope, Service, $locati
 		event.preventDefault();
 		if (Service.authData){
 			Service.saveOrders($scope.cart);
-			$location.path('/receipt');
+			$location.path('/receipt/'+orderNr);
 		}else{
 			$location.path('/login');
 		}
@@ -26,10 +26,6 @@ onlineClothingStoreApp.controller('CartCtrl', function ($scope, Service, $locati
 
 	$scope.getTotalCost = function(){
 		var items = Service.getCart();
-		var totalCost = 0;
-		for(key in items){
-			totalCost = totalCost + parseInt(items[key].price)*parseInt(items[key].amount);
-		}
-		return totalCost;
+		return Service.calTotalCost(items);
 	}
 });
