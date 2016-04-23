@@ -10,10 +10,8 @@ onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 			var profileData = Service.getProfile();
 			profileData.promise.then(function(res){
 				$scope.full_name = res.personalDetails.fname + ' ' + res.personalDetails.lname;
-				console.log($scope.full_name);
 			});
 			$scope.loggedIn=true;
-			console.log($scope.loggedIn);
 			$scope.notLoggedIn=false;
 			$(".shopping_cart").css("margin-right", "15px");
 		}else{

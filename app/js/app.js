@@ -101,8 +101,7 @@ onlineClothingStoreApp.filter("shorten", function(){
   };
 });
 
-$(document).mouseup(function (e)
-{
+$(document).mouseup(function (e){
     var container = $("#dropdownMenu");
     var icon = $("#dMenu-icon");
 
@@ -111,5 +110,14 @@ $(document).mouseup(function (e)
     {
         container.hide();
         $(icon).css("background-image", "url(images/menu-icon.png)");
+    }
+
+    var s_container = $("#search-input-frame");
+    var s_input = $("#search_input>input");
+
+    if (!s_input.is(e.target) // if the target of the click isn't the container...
+         && !s_container.is(e.target)) // ... nor a descendant of the container
+    {
+      s_container.hide();
     }
 });

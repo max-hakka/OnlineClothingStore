@@ -34,10 +34,8 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		Service.getItems.get(a, function(data){
 			if(keyword == "category"){
 				$scope.category=data;
-				console.log(data);
 			}else{
 				$scope.searchResult=data;
-				console.log(data);
 			}
 		});
 	}
@@ -60,12 +58,12 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 
 	$scope.keyUpFunction = function(query) {
 		console.log(query);
-		if (query.length>1){
+		if (query.length>0){
 			$scope.getItems("keyword", query);
-			$scope.keydown=true;
+			$("#search-input-frame").show();
 		}
 		else if (query==false || query==" "){
-			$scope.keydown=false;
+			$("#search-input-frame").hide();
 		}
 	}
 
@@ -75,25 +73,26 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 	$scope.hideArrows = function(){
 		$scope.displayedArrows=false;
 	}
+
+	$scope.displayNextImage = function() {
+	    x = (x === images.length - 1) ? 0 : x + 1;
+	    document.getElementById("img").src = images[x].imageUrl;
+	}
+
+	$scope.displayPreviousImage = function() {
+	    x = (x <= 0) ? images.length - 1 : x - 1;
+	    document.getElementById("img").src = images[x].imageUrl;
+	}
+
+	function startTimer() {
+	    setInterval($scope.displayNextImage, 3000);
+	}
+
+	var images, x = -1;
+	
+	Service.getItems.get({"category":"slideshow"}, function(res){
+		images = res.data;
+		startTimer();
+	});
+
 });
-
-
-function displayNextImage() {
-    x = (x === images.length - 1) ? 0 : x + 1;
-    document.getElementById("img").src = images[x];
-}
-
-function displayPreviousImage() {
-    x = (x <= 0) ? images.length - 1 : x - 1;
-    document.getElementById("img").src = images[x];
-}
-
-function startTimer() {
-    setInterval(displayNextImage, 3000);
-}
-
-var images = [], x = -1;
-images[0] = "http://www.1983fashion.com/images/banner_aug13.png";
-images[1] = "http://modernretail.com/wp-content/uploads/2014/11/shopify-shopping-features-v3-1.png";
-images[2] = "https://www.demoup.com/blog/wp-content/uploads/2015/11/online_shop-_features_wishlist.jpg";
-images[3] = "http://carneyteam.com/wp-content/uploads/2015/12/6_-Online-Shop.jpg";
