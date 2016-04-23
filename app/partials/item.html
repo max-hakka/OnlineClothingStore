@@ -54,11 +54,11 @@
 					<strong class="fr" style="margin-left: auto;">Amount:</strong>
 				</div>
 				<div class="t-rc d-ib">
-					<input type="number" ng-model="selectedAmount" min="1"></input> {{amount}} available
+					<input type="number" ng-model="selectedAmount" min="1"></input> <span class="amount" style="color: red;">{{amount}} available<span>
 				</div>
 			</div>
 			<br>
-			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()">Add To Cart</button>
+			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()" ng-disabled="mySwitch">Add To Cart</button>
 			<br>
 			<span ng-show="addedToCart" style="color:green;text-align:center;display:block;">Added to cart</span>
 			<br>
@@ -88,14 +88,14 @@
 		</div>
 	</div>
 </div>
-<div class="content" id="recommendations" ng-controller="HomeCtrl" style="width:100%;margin-top:50px;">
+<div class="content" id="recommendations" style="width:100%;margin-top:50px;">
 	<h4 style="font-size: 18px; text-align:left;">You might also like:</h4>
 	<div ng-repeat="items in category" style="border:1px solid black;">
-		<div class="clothing_item itemBox" ng-repeat="item in items" style="text-align:center;padding:0 5px 0 5px;margin-right:5px;">
-			<a href="#/item/{{item.Id}}"><img class="clothing" ng-src="{{item.imageUrl}}" style="width:100px;height:120px;"/></a>
-			<a href="#/item/{{item.Id}}" style="font-size:15px;">{{item.Name | shorten}}<a>
+		<div class="clothing_item itemBox" ng-repeat="rec_item in items" ng-if="item.Id != rec_item.Id" style="text-align:center;padding:0 5px 0 5px;margin-right:5px;">
+			<a href="#/item/{{rec_item.Id}}"><img class="clothing" ng-src="{{rec_item.imageUrl}}" style="width:100px;height:120px;"/></a>
+			<a href="#/item/{{rec_item.Id}}" style="font-size:15px;">{{rec_item.Name | shorten}}<a>
 			</br>
-			<strong style="color:black;">{{item.Price}} SEK</strong>
+			<strong style="color:black;">{{rec_item.Price}} SEK</strong>
 		</div>
 	</div>
 </div>

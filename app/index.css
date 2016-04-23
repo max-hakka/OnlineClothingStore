@@ -216,13 +216,12 @@ img.clothing{
  	sans-serif; 
 	font-weight: 800;
 	color: #FFFFFF;
-	background-color: gray;
+	background-color: rgba(128,128,128,0.1);
     width: 200px;
     text-align: center;
     padding: 5px;
     text-decoration: none;
     text-transform: uppercase;
-    cursor: pointer;
  }
  .clothing_item{
  	display: inline-block;
