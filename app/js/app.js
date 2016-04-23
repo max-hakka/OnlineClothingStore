@@ -88,3 +88,28 @@ onlineClothingStoreApp.config(['$routeProvider',
         redirectTo: '/home'
       });
   }]);
+
+onlineClothingStoreApp.filter("shorten", function(){
+  return function(string){
+    var newString;
+    if(string.length>18){
+      newString = string.substr(0,18)+"..."
+    }else{
+      newString = string;
+    }
+    return newString;
+  };
+});
+
+$(document).mouseup(function (e)
+{
+    var container = $("#dropdownMenu");
+    var icon = $("#dMenu-icon");
+
+    if (!icon.is(e.target) // if the target of the click isn't the container...
+         && !container.is(e.target)) // ... nor a descendant of the container
+    {
+        container.hide();
+        $(icon).css("background-image", "url(images/menu-icon.png)");
+    }
+});

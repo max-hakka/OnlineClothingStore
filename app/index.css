@@ -81,7 +81,7 @@ table td {
 	width: 30px;
 }
 #search_input{
-	margin-left: 50px;
+	margin-left: 100px;
 	margin-top: 23px;
 	display: inline-block;
 	vertical-align: top;
@@ -178,7 +178,6 @@ h2{
 h3, h4{
 	font-family: 'Raleway',
 	sans-serif;
-	font-weight: 800;
     text-transform: uppercase;
     text-align: center;
     margin-bottom: 0;
@@ -194,8 +193,8 @@ h3>a:hover, h4>a:hover{
 	text-decoration: none;
 }
 img.clothing{
-	width:200px; 
-	height:250px;
+	width:244px;
+	height:300px;
 	display: block;
 	margin-top: 10px;
     margin-left: auto;
@@ -254,21 +253,40 @@ img.clothing{
 	margin-top: 20px;
 	border-radius: 10px;
 }
+.roundButton{
+	font-size: 50px;
+	border-radius: 50px;
+	width: 100px;
+	height:100px;
+	border:1px solid rgba(177,177,177,0.5);
+	cursor: pointer;
+	margin-top: -18%;
+}
+@keyframes drawLeft{
+	from {
+		margin-left: -100px;
+	} to {
+		margin-left: -50px;
+	}
+}
+@keyframes drawRight{
+	from {
+		margin-right: -100px;
+	} to {
+		margin-right: -50px;
+	}
+}
 .leftarrow{
 	float:left;
-	text-align: center;
-	font-size: 25px;
-	height: 40px;
-	background-color: #A0A0A0;
-	color:#FFFFFF;
+	margin-left: -50px;
+	padding-left: 40px;
+	animation: 0.5s drawLeft;
 }
 .rightarrow{
 	float:right;
-	text-align: center;
-	font-size: 25px;
-	height: 40px;
-	background-color: #A0A0A0;
-	color:#FFFFFF;
+	margin-right: -50px;
+	padding-right: 40px;
+	animation: 0.5s drawRight;
 }
 .search-input-frame{
 	border: 1px solid #A0A0A0 !important;
@@ -287,6 +305,7 @@ a.searchResult{
 	border:1px solid white;
 	border-radius: 10px;
 	margin-top:-60px;
+	z-index: 1;
 }
 #dropdownMenu>a{
 	font-weight: 100;
@@ -317,4 +336,10 @@ a.searchResult{
 }
 .backButton{
 	display:block; margin-top:25px; border-radius:5px; cursor: pointer;
+}
+.itemBox{
+	text-align:center;border:1px solid silver;border-radius:10px;overflow:hidden;margin:5px 3px 0 0;
+}
+.itemBox-i{
+	background-color:rgba(192,192,192,0.3);border:0px;margin-top:5px;height:50px;padding:5px 0 5px 5px;
 }

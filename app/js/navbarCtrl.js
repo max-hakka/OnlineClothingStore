@@ -1,6 +1,5 @@
 onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 	$scope.menuIcon = "images/menu-icon.png";
-	$scope.dMenuDisplayed = false;
 	$scope.itemsAmount=Service.getCart().length;
 
 	var parentScope = $scope.$parent.$parent;
@@ -14,6 +13,7 @@ onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 			});
 			$scope.loggedIn=true;
 			$scope.notLoggedIn=false;
+			$(".shopping_cart").css("margin-right", "15px");
 		}else{
 			$scope.full_name = "";
 			$scope.loggedIn=false;
@@ -27,15 +27,18 @@ onlineClothingStoreApp.controller('NavbarCtrl', function ($scope, Service) {
 		Service.logOut();
 		authDataCallback();
 		$scope.dMenuDisplayed = false;
+		$(".shopping_cart").css("margin-right", "0px");
 	}
 
 	$scope.toggleDMenu = function(event) {
-		if($scope.dMenuDisplayed == false){
-			$scope.dMenuDisplayed = true;
-			$(event.target).css("background-image", "url(images/menu-icon-gray.png)");
+		var container = $("#dropdownMenu");
+		var icon = $(event.target);
+		if(container.css("display") == "none"){
+			container.css("display", "block");
+			icon.css("background-image", "url(images/menu-icon-gray.png)");
 		}else{
-			$scope.dMenuDisplayed = false;
-			$(event.target).css("background-image", "url(images/menu-icon.png)");
+			container.css("display", "none")
+			icon.css("background-image", "url(images/menu-icon.png)");
 		}
 	}
 });

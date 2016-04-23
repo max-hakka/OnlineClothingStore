@@ -13,10 +13,10 @@
 		</div>
 		
 		<div id="dMenu-icon" ng-show="loggedIn" ng-click="toggleDMenu($event)" class="fr"></div>
-		<a href="#/profile" class="fr">{{full_name}}</a>
-		<a href="#/cart" class="shopping_cart fr" style="margin-top: 10px;"><span style="color: #FD541B; margin-top: -5px; margin-left: 5px; font-size:14px;">{{itemsAmount}}</span></a>
+		<a href="#/cart" class="shopping_cart fr" style="margin-top: 10px;	margin-right: 0px;"><span style="color: #FD541B; margin-top: -5px; margin-left: 5px; font-size:14px;">{{itemsAmount}}</span></a>
 		<a href="#/login" ng-show="notLoggedIn" class="fr">Log In</a>
-		<div id="dropdownMenu" class="fr" ng-show="dMenuDisplayed">
+		<a href="#/profile" ng-show="loggedIn" class="fr">{{full_name}}</a>
+		<div id="dropdownMenu" class="fr" style="display:none;">
 			<a href="#/home" ng-click="logOut()" ng-show="loggedIn" class="fr">Log Out</a>
 			<a href="#/change-password" class="fr">Change Password</a>
 		</div>

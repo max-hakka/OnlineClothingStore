@@ -1,5 +1,6 @@
 onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookieStore, $location) {
 	var category;
+	$scope.displayedArrows=false;
 
 	if("undefined" === typeof($cookieStore.get("categoryName"))){
 		category = "Featured";
@@ -66,6 +67,13 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		else if (query==false || query==" "){
 			$scope.keydown=false;
 		}
+	}
+
+	$scope.showArrows = function(){
+		$scope.displayedArrows=true;
+	}
+	$scope.hideArrows = function(){
+		$scope.displayedArrows=false;
 	}
 });
 
