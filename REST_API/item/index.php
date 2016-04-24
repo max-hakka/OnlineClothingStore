@@ -36,7 +36,7 @@
 		}
 		$i = $i + 1;
 	}
-	$data='{"Id":"'.$res['Id'].'", "Name":"'.$res['Title'].'", "Category":"'.$res['Category'].'", "Price":"'.$res['Price'].'", "Description":"'.$res['Description'].'", "Country":"'.$res['Country'].'", "imageUrl":"'.$res['Image_url'].'", "Quantities":['.$quantities.']}';
+	$data='{"Id":"'.$res['Id'].'", "Name":"'.$res['Title'].'", "Category":"'.$res['Category'].'", "Gender":"'.$res['Gender'].'", "Price":"'.$res['Price'].'", "Description":"'.$res['Description'].'", "Country":"'.$res['Country'].'", "imageUrl":"'.$res['Image_url'].'", "Quantities":['.$quantities.']}';
 
 	print_r($data);
 	mysqli_free_result($result);

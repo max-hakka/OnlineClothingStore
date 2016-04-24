@@ -17,7 +17,13 @@
 		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Title LIKE '%$keyword%'";
 	}elseif (isset($_GET['category'])) {
 		$category=$_GET['category'];
-		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category LIKE '$category%'";
+		if($category == "Featured"){
+			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Featured=1";
+		}elseif ($category == "Accessories"){
+			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category='$category'";
+		}else{
+			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Gender='$category'";
+		}
 	} else {
 		$keyword="";
 		$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Title LIKE '$keyword%'";
@@ -33,7 +39,7 @@
 	$rowcount=mysqli_num_rows($result);
 	$i = 1;
 	while ($row=$result->fetch_object()) {
-		$element = '{"Id":"'.$row->Id.'", "Name":"'.$row->Title.'", "Price":"'.$row->Price.'", "Description":"'.$row->Description.'", "imageUrl":"'.$row->Image_url.'"}';
+		$element = '{"Id":"'.$row->Id.'", "Name":"'.$row->Title.'", "Price":"'.$row->Price.'", "Gender":"'.$row->Gender.'", "Description":"'.$row->Description.'", "imageUrl":"'.$row->Image_url.'"}';
 		if ($i != $rowcount){
 			$items .= $element.',';
 		}else{

@@ -2,8 +2,8 @@
 <div class="categories">
 	<ul class="category_list">
 		  <li><a href="#/home" ng-click="goToHome('Featured')">Home</a></li>
-		  <li><a href="#/home" ng-click="goToHome('Mens')">Men's</a></li>
-		  <li><a href="#/home" ng-click="goToHome('Womens')">Women's</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Men')">Men's</a></li>
+		  <li><a href="#/home" ng-click="goToHome('Women')">Women's</a></li>
 		  <li><a href="#/home" ng-click="goToHome('Kids')">Kids'</a></li>
 		  <li><a href="#/home" ng-click="goToHome('Accessories')">Accessories</a></li>
 		  <li><a href="#/help-contact" class="fr">Help &#38; Contact</a></li>
@@ -31,7 +31,8 @@
 					<strong class="fr" style="margin-left: auto;">Size:</strong>
 				</div>
 				<div class="t-rc d-ib">
-					<select ng-model="selectedSize" ng-options="size for size in sizes" ng-change="getColors()" style="width:200px;height:25px;border-radius:5px;">
+					<strong ng-show="oneSize">One Size</strong>
+					<select ng-disabled="sold_out_s" ng-show="selectSize" ng-model="selectedSize" ng-options="size for size in sizes" ng-change="getColors()" style="width:200px;height:25px;border-radius:5px;">
 						<option value="">---select size---</option>
 					</select>
 				</div>
@@ -43,7 +44,7 @@
 					<strong class="fr" style="margin-left: auto;">Color:</strong>
 				</div>
 				<div class="t-rc d-ib">
-					<select ng-model="selectedColor" ng-options="color for color in colors" ng-change="getAmount()" style="width:200px;height:25px;border-radius:5px;">
+					<select ng-disabled="sold_out" ng-model="selectedColor" ng-options="color for color in colors" ng-change="getAmount()" style="width:200px;height:25px;border-radius:5px;">
 						<option value="">---select color---</option>
 					</select>
 				</div>
@@ -54,13 +55,14 @@
 					<strong class="fr" style="margin-left: auto;">Amount:</strong>
 				</div>
 				<div class="t-rc d-ib">
-					<input type="number" ng-model="selectedAmount" min="1"></input> <span class="amount" style="color: red;">{{amount}} available<span>
+					<input ng-disabled="sold_out" type="number" ng-model="selectedAmount" min="1" ng-change="checkAmount()"></input> <span class="amount">{{amount}} available<span>
 				</div>
 			</div>
 			<br>
-			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()" ng-disabled="mySwitch">Add To Cart</button>
+			<button style="border-radius:10px;" id="{{item.Id}}" class="add_to_cart" ng-click="addToCart()" ng-disabled="b_disabled">Add To Cart</button>
 			<br>
-			<span ng-show="addedToCart" style="color:green;text-align:center;display:block;">Added to cart</span>
+			<div ng-show="sold_out" style="text-align:center;"><img src="images/sold_out.png" width="150px"/></div>
+			<span id="statusMessage" ng-bind="statusMessage" style="text-align:center;display:block;"></span>
 			<br>
 			<div class="d-ib">
 				<div class="t-lc">
@@ -68,6 +70,15 @@
 				</div>
 				<div class="t-rc d-ib">
 					{{item.Category}}
+				</div>
+			</div>
+			<br>
+			<div class="d-ib">
+				<div class="t-lc">
+					<strong class="fr" style="margin-left: auto;">Gender:</strong>
+				</div>
+				<div class="t-rc d-ib">
+					{{item.Gender}}
 				</div>
 			</div>
 			<br>

@@ -2,23 +2,50 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 	$controller("HomeCtrl", {$scope:$scope});
 	$scope.childScope = {};
 	$scope.amount = 0;
-	$scope.sizes = ["S", "M", "L"];
+	$scope.statusMessage = "";
 	$scope.selectedAmount = 1;
 	$scope.addedToCart = false;
-	$scope.mySwitch=true;
-	var quantities;
-	var itemId = $routeParams.itemId;
-	Service.getItem.get({"id":itemId}, function(data){
-		$scope.item=data;
-		$scope.getItems("category", $scope.item.Category);
-		quantities = $scope.item.Quantities;
-	});
-	
+	$scope.selectSize = true;
+	$scope.oneSize = false;
+	$scope.sold_out = false;
+	$scope.sold_out_s = false;
+
+	buttonDisabled(true);
+
+	function displayError(){
+		$("#statusMessage").css("color", "red");
+		if($scope.selectedSize == undefined || $scope.selectedSize == null){
+			if(!$scope.oneSize){
+				$scope.statusMessage = "Choice a size!";
+				return true;
+			}
+		}
+
+		if($scope.selectedColor == undefined || $scope.selectedColor == null){
+			$scope.statusMessage = "Choice a color!";
+			return true;
+		}else if($scope.selectedAmount > $scope.amount){
+			$scope.statusMessage = "Selected amount exceeds the available amount!";
+			return true;
+		}
+		return false;
+	}
+
+	$scope.checkAmount = function() {
+		if(displayError()){
+			buttonDisabled(true);
+		}else{
+			$scope.statusMessage = "";
+			buttonDisabled(false);
+		}
+	}
+
 	$scope.addToCart = function() {
 		var item = {'Id': itemId, 'name': $scope.item.Name, 'price': $scope.item.Price, 'size': $scope.selectedSize, 'color': $scope.selectedColor,'amount': $scope.selectedAmount};
 		Service.addToCart(item);
 		$scope.childScope.itemsAmount=Service.getCart().length;
-		$scope.addedToCart = true;
+		$scope.statusMessage = "Added to cart";
+		$("#statusMessage").css("color", "green");
 	}
 
 	$scope.goToHome = function(categoryName) {
@@ -26,46 +53,88 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 	}
 
 	function buttonDisabled(disabled){
-		if (!disabled){
-			$scope.mySwitch=true;
+		if (disabled){
+			$scope.b_disabled=true;
 			$(".add_to_cart").css("background-color", "rgba(128,128,128,0.1)");
 			$(".add_to_cart").css("cursor", "auto");
-			$(".amount").css("color", "red");
 		}
 		else{
-			$scope.mySwitch=false;
+			$scope.b_disabled=false;
 			$(".add_to_cart").css("background-color", "grey");
 			$(".add_to_cart").css("cursor", "pointer");
-			$(".amount").css("color", "black");
 		}
 	}
 
 	$scope.getColors = function(){
-		var quantities = $scope.item.Quantities;
+		$scope.selectedColor = null;
+		$scope.statusMessage = "";
 		var list = [];
-		if($scope.selectedSize){
+		if($scope.selectedSize || $scope.oneSize){
+			$(".amount").css("color", "black");
 			for (i=0; i < quantities.length; i++){
 				if ($scope.selectedSize==quantities[i].Size && $.inArray(quantities[i].Color, list)==-1){
+					list.push(quantities[i].Color);
+				}else if($scope.oneSize){
 					list.push(quantities[i].Color);
 				}
 			}
 			$scope.colors=list;
+			if(list.length<1){
+				$scope.sold_out = true;
+				$scope.amount = 0;
+				$(".amount").css("color", "red");
+				buttonDisabled(true);
+			}else{
+				$scope.sold_out = false;
+			}
 		}else{
 			$scope.colors=undefined;
-			buttonDisabled(false);
+			buttonDisabled(true);
 		}
+
+		$scope.getAmount();
 	}
 
 	$scope.getAmount = function(){
-		console.log($scope.selectedColor);
+		$scope.statusMessage = "";
 		var n = 0;
 		for (i=0; i < quantities.length; i++){
-			if ($scope.selectedSize==quantities[i].Size && $scope.selectedColor==quantities[i].Color){
-				n=quantities[i].Quantity;
-			}
+			if($scope.selectedSize == undefined || $scope.selectedSize == null){
+				n+=parseInt(quantities[i].Quantity);				
+			}else if($scope.selectedColor == undefined || $scope.selectedColor == null){
+				if($scope.selectedSize==quantities[i].Size){
+					n+=parseInt(quantities[i].Quantity);
+				}
+			}else{
+				if ($scope.selectedSize==quantities[i].Size && $scope.selectedColor==quantities[i].Color){
+					n=quantities[i].Quantity;
+				}else if($scope.oneSize && $scope.selectedColor==quantities[i].Color){
+					n=quantities[i].Quantity;
+				}
+			}		
 		}
 		$scope.amount=n;
-		buttonDisabled(n);
+		$scope.checkAmount();
 	}
+
+	var quantities;
+	var itemId = $routeParams.itemId;
+	Service.getItem.get({"id":itemId}, function(data){
+		$scope.item=data;
+		quantities = $scope.item.Quantities;
+		$scope.getAmount();
+		if(data.Category == "Accessories"){
+			$scope.selectSize = false;
+			$scope.oneSize = true;
+			$scope.getColors();
+		}else{
+			$scope.sizes = ["S", "M", "L"];
+		}
+		if(quantities.length<1){
+			$scope.sold_out = true;
+			$scope.sold_out_s = true;
+		}
+		$scope.getItems("category", $scope.item.Category);
+	});
 	
 });
