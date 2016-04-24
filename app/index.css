@@ -43,10 +43,37 @@ table input {
 }
 table th {
 	background-color: #9E9E9E;
+	padding: 10px 15px 10px 15px;
 }
 
 table td {
 	background-color: rgba(158, 158, 158, 0.26);
+	padding: 0px 10px 0px 10px;
+	border-radius: 3px;
+}
+#profile>table{
+	margin-left: 20%;
+}
+#profile>table th {
+	background-color: rgb(144, 245, 255);
+}
+#profile>table td {
+	background-color: rgba(144, 210, 210, 0.26);
+	padding: 10px 30px 10px 30px;
+}
+#cart table th {
+	background-color: rgb(255, 185, 144);
+}
+#cart table td {
+	background-color: rgba(247, 224, 188, 0.32);
+}
+#profile table.center th {
+	background-color: rgb(255, 144, 144);
+	padding: 5px 15px 5px 15px;
+}
+#profile table.center td {
+	background-color: rgba(255, 144, 144, 0.2);
+	padding: 3px 10px 3px 10px;
 }
 .fl {
 	float: left;
@@ -128,7 +155,7 @@ table td {
 }
 
 .categories{
-	margin: 120px 0 0 0;
+	margin: 110px 0 0 0;
 	width: 250px;
 	float: left;
 }

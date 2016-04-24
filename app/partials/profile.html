@@ -1,11 +1,13 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <div id="profile" class="mainContainer center table">
 	<button class="backButton" ng-click="$back()">Back to previous page</button>
+	</br>
 	<h3>{{full_name}}</h3>
+	</br>
 	<table>
 		<tr>
-			<th>Personal details</th>
-			<th>Shipping Address</th>
+			<th style="border-top-left-radius:20px;">Personal details</th>
+			<th style="border-top-right-radius:20px;">Shipping Address</th>
 		</tr>
 		<tr>
 			<td>First name: {{fname}}</td>
@@ -26,6 +28,7 @@
 	</table>
 	</br>
 	<a href="#/edit-account" class="button">Edit Profile</a>
+	</br></br>
 	<h2>My Purchases:</h2>
 	<div ng-repeat="order in orders">
 		<hr/>
