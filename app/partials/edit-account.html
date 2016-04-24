@@ -2,7 +2,7 @@
 <div id="editAccount" class="mainContainer center table">
 	<button class="backButton" ng-click="$back()">Back to previous page</button>
 	<h1>Edit Account</h1>
-	<form>
+	<form name="myForm" novalidate ng-submit="updateProfile(myForm)">
 		<table>
 			<tr>
 				<td colspan="2" width="300px"><h3 style="margin-top: 15px; margin-bottom: 0;">Personal details</h3></td>
@@ -10,19 +10,19 @@
 			<tr>
 				<td>First name:</td>
 				<td>
-					<input type="text" ng-model="fname"/>
+					<input type="text" ng-model="fname" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Last name:</td>
 				<td>
-					<input type="text" ng-model="lname" />
+					<input type="text" ng-model="lname" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Mobile:</td>
 				<td>
-					<input type="text" ng-model="mobile" />
+					<input type="text" ng-model="mobile" required/>
 				</td>
 			</tr>
 			<tr>
@@ -37,23 +37,25 @@
 			<tr>
 				<td>Street name:</td>
 				<td>
-					<input type="text" ng-model="street" />
+					<input type="text" ng-model="street" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Postal code:</td>
 				<td>
-					<input type="text" ng-model="postalCode" />
+					<input type="text" ng-model="postalCode" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>City:</td>
 				<td>
-					<input type="text" ng-model="city" />
+					<input type="text" ng-model="city" required/>
 				</td>
 			</tr>
 		</table>
-		<a href="#/profile" style="margin-top:20px;" class="button fr" ng-click="updateProfile()">Save</a>
+		<input type="submit" style="margin-top:20px;" class="button fr" value="Save"/>
 		<a href="#/profile" style="margin-top:20px;" class="button fl">Cancel</a>
 	</form>
+	</br></br></br>
+	<span style="color:red;display:block;" ng-show="noSuccesed">{{message}}</span>
 </div>

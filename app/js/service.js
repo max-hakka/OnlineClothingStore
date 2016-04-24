@@ -116,7 +116,7 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 	}
 
 	// Store user object under "users" into Firebase database
-	this.createProfile = function(authentication, data) {
+	this.createProfile = function(authentication, data, callback) {
 		var self = this;
 		this.dataRef.createUser({
 			email: authentication.email,
@@ -124,12 +124,14 @@ onlineClothingStoreApp.factory('Service',function ($q, $resource, $cookieStore) 
 		}, function(error, userData){
 			if (error){
 				console.log("Error creating user:", error);
+				callback(error);
 			}else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			    userID = userData.uid;
 			    self.logIn(authentication, function(authData){
 			    	if(authData == "success"){
 			    		usersRef.child(userData.uid).set(data);
+			    		callback("success");
 			    	}
 			    });
 			  

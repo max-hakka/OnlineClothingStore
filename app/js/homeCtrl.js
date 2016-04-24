@@ -74,6 +74,8 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		$scope.displayedArrows=false;
 	}
 
+	var images, x = -1;
+
 	$scope.displayNextImage = function() {
 	    x = (x === images.length - 1) ? 0 : x + 1;
 	    var e = document.getElementById("imgSlideshow");
@@ -86,8 +88,6 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 	    x = (x <= 0) ? images.length - 1 : x - 1;
 	    document.getElementById("imgSlideshow").src = images[x].imageUrl;
 	}
-
-	var images, x = -1;
 	
 	Service.getItems.get({"category":"slideshow"}, function(res){
 		images = res.data;

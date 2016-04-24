@@ -1,9 +1,10 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <div id="register" class="mainContainer center table">
+	<div id="loading" ng-show="loading"></div>
 	<button class="backButton" ng-click="$back()">Back to previous page</button>
 	<h1>New Account</h1>
 	<span style="color:red;">* Required</span>
-	<form name="myForm" novalidate ng-submit="createProfile(myForm)">
+	<form name="myForm" ng-submit="createProfile(myForm)">
 		<table>
 			<tr>
 				<td colspan="2" width="300px"><h3 style="margin-top: 15px; margin-bottom: 0;">Personal details</h3></td>
@@ -11,7 +12,7 @@
 			<tr>
 				<td>First name<span style="color:red;">*</span></td>
 				<td>
-					<input type="text" name="fn" ng-model="fname" required>
+					<input type="text" name="fn" ng-model="fname" required/>
 				</td>
 			</tr>
 			<tr>
@@ -75,4 +76,5 @@
 		<input type="submit" class="button fr" value="Register"/>
 	</form>
 	<span style="color:red;" ng-show="valid">All fields with * must be filled!</span>
+	<span id="error" style="color:red;"></span>
 </div>
