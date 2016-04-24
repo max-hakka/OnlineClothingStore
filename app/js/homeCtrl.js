@@ -74,12 +74,16 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 		$scope.displayedArrows=false;
 	}
 
+	Service.getItems.get({"category":"slideshow"}, function(res){
+		images = res.data;
+	});
+
 	var images, x = -1;
 
 	$scope.displayNextImage = function() {
 	    x = (x === images.length - 1) ? 0 : x + 1;
 	    var e = document.getElementById("imgSlideshow");
-	    if(e != null){
+	    if(e !== null){
 	    	e.src = images[x].imageUrl;
 	    }
 	}
@@ -88,10 +92,6 @@ onlineClothingStoreApp.controller('HomeCtrl', function ($scope, Service, $cookie
 	    x = (x <= 0) ? images.length - 1 : x - 1;
 	    document.getElementById("imgSlideshow").src = images[x].imageUrl;
 	}
-	
-	Service.getItems.get({"category":"slideshow"}, function(res){
-		images = res.data;
-	});
 	
 	var nIntervId = setInterval($scope.displayNextImage, 3000);
 	

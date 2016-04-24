@@ -21,6 +21,8 @@
 			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Featured=1";
 		}elseif ($category == "Accessories"){
 			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category='$category'";
+		}elseif ($category == "slideshow"){
+			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Category='$category'";
 		}else{
 			$query="SELECT * FROM ocs_items NATURAL JOIN ocs_images WHERE Gender='$category'";
 		}

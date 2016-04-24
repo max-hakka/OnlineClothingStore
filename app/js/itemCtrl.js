@@ -22,8 +22,10 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 		}
 
 		if($scope.selectedColor == undefined || $scope.selectedColor == null){
-			$scope.statusMessage = "Choice a color!";
-			return true;
+			if(!$scope.sold_out_s){
+				$scope.statusMessage = "Choice a color!";
+				return true;
+			}
 		}else if($scope.selectedAmount > $scope.amount){
 			$scope.statusMessage = "Selected amount exceeds the available amount!";
 			return true;
@@ -91,8 +93,9 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 			$scope.colors=undefined;
 			buttonDisabled(true);
 		}
-
-		$scope.getAmount();
+		if(!$scope.oneSize){
+			$scope.getAmount();
+		}
 	}
 
 	$scope.getAmount = function(){
@@ -122,10 +125,15 @@ onlineClothingStoreApp.controller('ItemCtrl', function ($scope, $routeParams, Se
 	Service.getItem.get({"id":itemId}, function(data){
 		$scope.item=data;
 		quantities = $scope.item.Quantities;
-		$scope.getAmount();
+		var totalAmount = 0;
+		for (i=0; i < quantities.length; i++){
+			totalAmount+=parseInt(quantities[i].Quantity);
+		}
+		$scope.amount=totalAmount;
 		if(data.Category == "Accessories"){
 			$scope.selectSize = false;
 			$scope.oneSize = true;
+
 			$scope.getColors();
 		}else{
 			$scope.sizes = ["S", "M", "L"];
