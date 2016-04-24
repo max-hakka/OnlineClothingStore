@@ -5,29 +5,20 @@
 	<h1>Sign In</h1>
 	<form ng-submit="logIn()">
 		<table>
-			<tr>
-				<td colspan="2" width="300px">Email</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="email" ng-model="email" required/>
-				</td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>
-					<a href="#/reset-password" style="float:right;">Forgot your password?</a>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="password" ng-model="password" required></td>
-				</td>
-			</tr>
+			Email:
+			</br>
+			<input id="userInfo" type="email" ng-model="email" required style="background-color: rgba(144, 173, 255, 0.2);"/>
+			</br>
+			</br>
+			Password:
+			<a href="#/reset-password" style="float:right;">Forgot your password?</a>
+			</br>
+			<input id="userInfo" type="password" ng-model="password" required style="background-color: rgba(144, 173, 255, 0.2);"></td>
+			</br>
 		</table>
 		</br>
-		<input type="submit" value="Sign In"/>
-		<a href="#/register" class="button fr">Create a new account</a>
+		<input type="submit" value="Sign In" class="button fl" />
+		<a href="#/register" class="button fr" style="background-color: rgb(255, 144, 144);">Create a new account</a>
 	</form>
 	</br>
 	<span class="response" style="color:red;" ng-show="noSuccessed">{{status}}</span>

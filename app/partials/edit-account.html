@@ -10,19 +10,19 @@
 			<tr>
 				<td>First name:</td>
 				<td>
-					<input type="text" ng-model="fname" required/>
+					<input id="userInfo" type="text" ng-model="fname" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Last name:</td>
 				<td>
-					<input type="text" ng-model="lname" required/>
+					<input id="userInfo" type="text" ng-model="lname" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Mobile:</td>
 				<td>
-					<input type="text" ng-model="mobile" required/>
+					<input id="userInfo" type="text" ng-model="mobile" required/>
 				</td>
 			</tr>
 			<tr>
@@ -31,30 +31,30 @@
 			<tr>
 				<td>C/o:</td>
 				<td>
-					<input type="text" ng-model="co" />
+					<input id="userInfo" type="text" ng-model="co" />
 				</td>
 			</tr>
 			<tr>
 				<td>Street name:</td>
 				<td>
-					<input type="text" ng-model="street" required/>
+					<input id="userInfo" type="text" ng-model="street" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>Postal code:</td>
 				<td>
-					<input type="text" ng-model="postalCode" required/>
+					<input id="userInfo" type="text" ng-model="postalCode" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>City:</td>
 				<td>
-					<input type="text" ng-model="city" required/>
+					<input id="userInfo" type="text" ng-model="city" required/>
 				</td>
 			</tr>
 		</table>
 		<input type="submit" style="margin-top:20px;" class="button fr" value="Save"/>
-		<a href="#/profile" style="margin-top:20px;" class="button fl">Cancel</a>
+		<a href="#/profile" style="margin-top:20px;background-color:brown;" class="button fl">Cancel</a>
 	</form>
 	</br></br></br>
 	<span style="color:red;display:block;" ng-show="noSuccesed">{{message}}</span>

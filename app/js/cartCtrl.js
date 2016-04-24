@@ -2,10 +2,19 @@ onlineClothingStoreApp.controller('CartCtrl', function ($scope, Service, $locati
 	var items = Service.getCart();
 	var orderNr = Service.generateGUID();
 	var d = new Date();
-	var h = d.getHours() + "0";
-	var m = d.getMinutes() + "0";
-	var s = d.getSeconds() + "0";
-	var date = d.getDate()+"-"+d.getMonth()+'-'+d.getFullYear()+'T'+h.substr(0,2)+':'+m.substr(0,2)+':'+s.substr(0,2);
+	var h = d.getHours();
+	var m = d.getMinutes();
+	var s = d.getSeconds();
+	if(h<10){
+		h =  "0" + h;
+	}
+	if(m<10){
+		m =  "0" + m;
+	}
+	if(s<10){
+		s =  "0" + s;
+	}
+	var date = d.getDate()+"-"+d.getMonth()+'-'+d.getFullYear()+'T'+h+':'+m+':'+s;
 	$scope.cart = {'orderNr': orderNr, 'date': date, 'shipped': 'Ongoing', 'items': items};
 
 	$scope.saveOrders = function(event) {

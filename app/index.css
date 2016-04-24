@@ -51,6 +51,9 @@ table td {
 	padding: 0px 10px 0px 10px;
 	border-radius: 3px;
 }
+#editAccount table td {
+	background-color: rgba(158, 158, 158, 0);
+}
 #profile>table{
 	margin-left: 20%;
 }
@@ -75,6 +78,13 @@ table td {
 	background-color: rgba(255, 144, 144, 0.2);
 	padding: 3px 10px 3px 10px;
 }
+input#userInfo {
+	background-color: rgba(255, 144, 144, 0.2);
+	padding: 3px 2px 3px 2px;
+	width:300px;
+	height: 20px;
+	border-radius: 5px;
+}
 .fl {
 	float: left;
 }
@@ -93,6 +103,8 @@ table td {
     border-radius: 4px;
     padding: 5px 10px;
     text-decoration: none;
+    cursor: pointer;
+    border:0;
 }
 #header{
 	height: 80px;
